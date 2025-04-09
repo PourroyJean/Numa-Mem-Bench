@@ -51,37 +51,37 @@ Features:
 The codebase is organized in a modular fashion to make it extensible:
 
 ```
-└── src
+├── src
 │   ├── benchmark
 │   │   ├── memory_latency_bench.c
 │   │   └── memory_latency_bench.h
 │   ├── common
 │   │   ├── bench_common.c
 │   │   └── bench_common.h
-│   └── [numa_mem_bench.c](./src/numa_mem_bench.c)
+│   └── numa_mem_bench.c
 │
 ├── scripts
 │   ├── orchestrator
-│   │   └── [wrapper_numa.sh](./scripts/orchestrator/wrapper_numa.sh)
+│   │   └── wrapper_numa.sh
 │   └── visualization
-│       ├── [plot_scaling.py](./scripts/visualization/plot_scaling.py)
-│       └── [requirements.txt](./scripts/visualization/requirements.txt)
+│       ├── plot_scaling.py)
+│       └── requirements.txt)
 │
-├── examples
-│   ├── 01_LUMIG_1_domain_7_ranks
-│   ├── 02_LUMIG_2_domains_14_ranks
-│   └── run_example.sh
+└── examples
+    ├── 01_LUMIG_1_domain_7_ranks
+    ├── 02_LUMIG_2_domains_14_ranks
+    └── run_example.sh
 ```
 
 - **src/**: Contains all source code files (`.c` and `.h`).
-  - `src/benchmark/`: Specific benchmark implementations (e.g., memory latency) with their corresponding header files.
-  - `src/common/`: Shared utility functions and their header files used across benchmarks.
-  - `[numa_mem_bench.c](./src/numa_mem_bench.c)`: The main application entry point and orchestrator.
+  - [src/benchmark](src/benchmark): Specific benchmark implementations (e.g., memory latency) with their corresponding header files.
+  - [src/common](src/common/): Shared utility functions and their header files used across benchmarks.
+  - [numa_mem_bench.c](./src/numa_mem_bench.c): The main application entry point and orchestrator.
 - **scripts/**: Contains wrapper scripts for running benchmarks or processing results.
-  - `scripts/orchestrator/`: Contains the [wrapper_numa.sh](./scripts/orchestrator/wrapper_numa.sh) script for managing NUMA binding.
-  - `scripts/visualization/`: Contains visualization tools like [plot_scaling.py](./scripts/visualization/plot_scaling.py).
+  - [scripts/orchestrator/](scripts/orchestrator/): Contains the [wrapper_numa.sh](./scripts/orchestrator/wrapper_numa.sh) script for managing NUMA binding.
+  - [scripts/visualization/](scripts/visualization/): Contains visualization tools like [plot_scaling.py](./scripts/visualization/plot_scaling.py).
 
-This modular design makes it easy to add new benchmarks in the future by adding files to `src/benchmark/` and updating the `Makefile`.
+This modular design makes it easy to add new benchmarks in the future by adding files to `src/benchmark/` and updating the [Makefile](Makefile).
 
 ### Building
 
@@ -131,7 +131,7 @@ srun --nodes=1 --ntasks=8 numactl --membind=1 ./numa_mem_bench --size=512
 ```
 
 
-## Wrapper Script Usage (`scripts/orchestrator/wrapper_numa.sh`)
+## [wrapper_numa.sh](scripts/orchestrator/wrapper_numa.sh) usage
 
 To simplify running the benchmark with complex NUMA binding strategies, the [wrapper_numa.sh](./scripts/orchestrator/wrapper_numa.sh) script is provided. It handles launching the `numa_mem_bench` executable with appropriate `numactl` memory binding settings for each MPI rank based on user-provided options.
 
