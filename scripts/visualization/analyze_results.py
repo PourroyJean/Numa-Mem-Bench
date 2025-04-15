@@ -11,6 +11,16 @@ from mpl_toolkits.mplot3d import Axes3D
 import argparse
 import logging
 
+# --- Custom Exceptions ---
+class DataParsingError(Exception):
+    """Custom exception for errors during data parsing."""
+    pass
+
+class PlottingError(Exception):
+    """Custom exception for errors during plot generation."""
+    pass
+# --- End Custom Exceptions ---
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 log = logging.getLogger(__name__)
@@ -18,7 +28,14 @@ log = logging.getLogger(__name__)
 # --- Argument Parsing ---
 
 def parse_args():
-    """Parse command line arguments."""
+    """Parses command-line arguments for the analysis script.
+
+    Uses argparse to define and parse arguments for the job directory,
+    analysis mode, 3D plot skipping, and verbosity.
+
+    Returns:
+        argparse.Namespace: An object containing the parsed command-line arguments.
+    """
     parser = argparse.ArgumentParser(description='Analyze NUMA benchmark results (Single or Multiple Sizes)')
     parser.add_argument('job_dir', type=Path, help='Directory containing benchmark results')
     parser.add_argument('--mode', choices=['single', 'multiple'], default=None,
@@ -33,7 +50,20 @@ def parse_args():
 # --- Data Parsing and Mode Detection ---
 
 def detect_data_mode(csv_files, verbose=False):
-    """Detect whether the data contains multiple memory sizes."""
+    """Detects whether the input data represents single or multiple memory sizes.
+
+    Examines the first valid CSV file found to determine the mode.
+    Checks for the presence of a 'size (MB)' column and more than one row.
+    Handles empty files and defaults to 'single' mode if detection fails.
+
+    Args:
+        csv_files (list[Path]): A list of Path objects for the CSV files to check.
+        verbose (bool, optional): If True, enables debug logging during detection.
+                                   Defaults to False.
+
+    Returns:
+        str: The detected mode ('single' or 'multiple').
+    """
     if not csv_files:
         log.debug("No CSV files found, defaulting to single size mode.")
         return 'single'
@@ -54,100 +84,190 @@ def detect_data_mode(csv_files, verbose=False):
         return 'single'
 
 def parse_csv_files(job_dir, mode=None, verbose=False):
-    """Parse all CSV files in the job directory and extract relevant data."""
+    """Parses all relevant CSV files in the job directory.
+
+    Identifies CSV files starting with 'sequential_' or 'interleaved_',
+    extracts the number of ranks from the filename, and parses latency data
+    based on the specified or auto-detected analysis mode ('single' or 'multiple').
+
+    Calculates basic statistics (mean, std, min, max) for each run (single mode)
+    or for each memory size within each run (multiple mode).
+
+    Args:
+        job_dir (Path): The path to the directory containing the CSV result files.
+        mode (str | None, optional): The analysis mode ('single' or 'multiple').
+                                     If None, mode is auto-detected. Defaults to None.
+        verbose (bool, optional): If True, enables debug logging during parsing.
+                                   Defaults to False.
+
+    Returns:
+        tuple[list[dict], str]: A tuple containing:
+            - A list of dictionaries, where each dictionary represents data from
+              one CSV file, including ranks, type, source file, and latency data
+              (either as a single 'latencies' array or nested in 'data_by_size').
+            - The determined analysis mode string ('single' or 'multiple').
+
+    Raises:
+        DataParsingError: If the job directory is invalid, no valid CSV files
+                          are found, or critical errors occur during parsing
+                          (e.g., invalid format, missing columns, data conversion issues).
+    """
     log.info(f"Starting to parse CSV files in {job_dir}")
     data = []
     
+    # Validate job_dir earlier
     if not job_dir.exists() or not job_dir.is_dir():
-        log.error(f"Error: Directory {job_dir} does not exist or is not a directory")
-        sys.exit(1)
+        # Raise specific error instead of exiting directly
+        raise DataParsingError(f"Error: Directory {job_dir} does not exist or is not a directory")
     
     csv_files = sorted([f for f in job_dir.glob("*.csv") if f.stem.startswith(('sequential_', 'interleaved_'))])
     log.info(f"Found {len(csv_files)} CSV files: {[f.name for f in csv_files]}")
     
     if not csv_files:
-        log.error(f"Error: No valid CSV files (sequential_*.csv or interleaved_*.csv) found in {job_dir}")
-        sys.exit(1)
+        # Raise specific error
+        raise DataParsingError(f"Error: No valid CSV files (sequential_*.csv or interleaved_*.csv) found in {job_dir}")
     
+    # Auto-detect mode if not specified by user
     if mode is None:
         mode = detect_data_mode(csv_files, verbose=verbose)
         log.info(f"Auto-detected analysis mode: {mode}")
     else:
         log.info(f"Using specified analysis mode: {mode}")
     
+    # Parse each file according to the determined mode
     for csv_file in csv_files:
         log.debug(f"Processing file: {csv_file.name}")
         try:
             df = pd.read_csv(csv_file)
             if df.empty:
                 log.warning(f"Skipping empty file: {csv_file.name}"); continue
-            if len(df.columns) < 2:
-                log.error(f"Invalid CSV format in {csv_file.name}: expected >= 2 cols, found {len(df.columns)}"); sys.exit(1)
-            
+            if len(df.columns) < 2: # Need at least rank 0 data
+                # Raise specific error
+                raise DataParsingError(f"Invalid CSV format in {csv_file.name}: expected >= 2 cols, found {len(df.columns)}")
+
+            # Extract number of ranks from filename
             match = re.search(r'(\d+)ranks', csv_file.stem)
             if not match:
-                log.error(f"Could not find number of ranks in filename {csv_file.name}"); sys.exit(1)
-            ranks = int(match.group(1))
+                # Raise specific error
+                raise DataParsingError(f"Could not find number of ranks (e.g., '16ranks') in filename {csv_file.name}")
+            ranks = int(match.group(1)) # Assume int conversion is safe after regex match
             log.debug(f"Found {ranks} ranks in filename")
-            
+
             file_data = {'ranks': ranks, 'is_interleaved': 'interleaved' in csv_file.stem, 'source_file': csv_file.name}
-            
+
             if mode == 'single':
+                # Single size mode - use first row of data
                 if 'size (MB)' in df.columns and len(df) > 1:
                     log.warning(f"File {csv_file.name} contains multiple sizes, using first row only in single-size mode.")
-                
+
+                # Determine latency columns (all except potentially 'size (MB)')
                 latency_cols = [col for col in df.columns if col != 'size (MB)']
-                if not latency_cols: log.error(f"No latency data columns found in {csv_file.name}"); sys.exit(1)
-                
+                if not latency_cols:
+                    # Raise specific error
+                    raise DataParsingError(f"No latency data columns found in {csv_file.name} (single mode)")
+
                 try:
+                    # Attempt to convert the first row's latency columns to float
                     latencies = df.iloc[0][latency_cols].values.astype(float)
+                    # Check for NaNs after conversion
+                    if np.isnan(latencies).any():
+                        log.warning(f"NaN values found in latency data for {csv_file.name} (single mode). Check input CSV.")
                 except ValueError as ve:
-                     log.error(f"Error converting single-size latency data to float in {csv_file.name}: {ve}")
-                     log.error(f"Problematic data: {df.iloc[0][latency_cols].values}"); sys.exit(1)
+                     # Raise specific error with context
+                     raise DataParsingError(f"Error converting single-size latency data to float in {csv_file.name}: {ve}. Problematic data: {df.iloc[0][latency_cols].values}")
+
+                # Calculate stats, handle potential NaNs
+                mean_val = np.nanmean(latencies) if not np.isnan(latencies).all() else np.nan
+                std_val = np.nanstd(latencies) if not np.isnan(latencies).all() else np.nan
+                min_val = np.nanmin(latencies) if not np.isnan(latencies).all() else np.nan
+                max_val = np.nanmax(latencies) if not np.isnan(latencies).all() else np.nan
 
                 file_data.update({
-                    'latencies': latencies, 'mean': np.mean(latencies), 'std': np.std(latencies),
-                    'min': np.min(latencies), 'max': np.max(latencies)
+                    'latencies': latencies, 'mean': mean_val, 'std': std_val,
+                    'min': min_val, 'max': max_val
                 })
                 data.append(file_data)
 
             else: # mode == 'multiple'
+                # Check for required 'size (MB)' column in multi-size mode
                 if 'size (MB)' not in df.columns:
-                    log.warning(f"Skipping file {csv_file.name}: missing 'size (MB)' column in multi-size mode."); continue 
-                
+                    log.warning(f"Skipping file {csv_file.name}: missing 'size (MB)' column required for multi-size mode."); continue
+
                 memory_sizes = df['size (MB)'].values
                 data_by_size = {}
+                # Determine latency columns (all except 'size (MB)')
                 latency_cols = [col for col in df.columns if col != 'size (MB)']
-                if not latency_cols: log.error(f"No latency data columns found in {csv_file.name}"); sys.exit(1)
+                if not latency_cols:
+                    # Raise specific error
+                    raise DataParsingError(f"No latency data columns found in {csv_file.name} (multi mode)")
 
+                # Process each row (memory size)
                 for i, size in enumerate(memory_sizes):
                     try:
+                        # Attempt to convert latency data for this row to float
                         latencies = df.iloc[i][latency_cols].values.astype(float)
+                        # Check for NaNs after conversion
+                        if np.isnan(latencies).any():
+                             log.warning(f"NaN values found in latency data for {csv_file.name}, size {size}MB. Check input CSV.")
+                        
+                        # Calculate stats, handle potential NaNs
+                        mean_val = np.nanmean(latencies) if not np.isnan(latencies).all() else np.nan
+                        std_val = np.nanstd(latencies) if not np.isnan(latencies).all() else np.nan
+                        min_val = np.nanmin(latencies) if not np.isnan(latencies).all() else np.nan
+                        max_val = np.nanmax(latencies) if not np.isnan(latencies).all() else np.nan
+                        
                         data_by_size[size] = {
-                            'latencies': latencies, 'mean': np.mean(latencies), 'std': np.std(latencies),
-                            'min': np.min(latencies), 'max': np.max(latencies),
+                            'latencies': latencies, 'mean': mean_val, 'std': std_val,
+                            'min': min_val, 'max': max_val,
                         }
                     except ValueError as ve:
-                        log.error(f"Error converting latency data to float in {csv_file.name} at size {size}MB, row {i}: {ve}")
-                        log.error(f"Problematic data: {df.iloc[i][latency_cols].values}"); sys.exit(1)
+                        # Raise specific error with context
+                        raise DataParsingError(f"Error converting multi-size latency data to float in {csv_file.name} at size {size}MB, row {i}: {ve}. Problematic data: {df.iloc[i][latency_cols].values}")
                     except IndexError:
-                        log.error(f"Error accessing data row {i} for size {size}MB in {csv_file.name}"); sys.exit(1)
-                
+                         # Raise specific error
+                        raise DataParsingError(f"Error accessing data row {i} for size {size}MB in {csv_file.name}. CSV structure may be incorrect.")
+
                 file_data.update({'memory_sizes': memory_sizes, 'data_by_size': data_by_size})
                 data.append(file_data)
-            
+
             log.debug(f"Successfully processed {csv_file.name}")
-        except pd.errors.ParserError as pe: log.error(f"Error parsing CSV file {csv_file.name}: {pe}"); sys.exit(1)
-        except FileNotFoundError: log.error(f"Error: File {csv_file.name} not found during processing loop."); sys.exit(1)
-        except Exception as e: log.exception(f"Unexpected error processing {csv_file.name}"); sys.exit(1)
-    
-    if not data: log.error("No data successfully parsed."); sys.exit(1)
+        # Catch pandas-specific parsing errors
+        except pd.errors.ParserError as pe:
+             raise DataParsingError(f"Error parsing CSV file {csv_file.name}: {pe}")
+        # Catch file not found errors that might occur if file disappears mid-run (unlikely but defensive)
+        except FileNotFoundError:
+             raise DataParsingError(f"Error: File {csv_file.name} not found during processing loop.")
+        # Catch any other unexpected error during file processing
+        except Exception as e:
+             # Log the full traceback for unexpected errors
+             log.exception(f"Unexpected error processing {csv_file.name}")
+             # Re-raise as a DataParsingError for consistent handling in main
+             raise DataParsingError(f"Unexpected error processing {csv_file.name}: {e}")
+
+    if not data:
+        # Raise specific error if no data could be parsed at all
+        raise DataParsingError("Error: No data successfully parsed from any CSV files.")
+    # Return data sorted by rank count, and the detected/specified mode
     return sorted(data, key=lambda x: x['ranks']), mode
 
 # --- Plotting Orchestration ---
 
 def create_plots(data, plots_dir, mode='single', no_3d=False):
-    """Create all required plots based on the analysis mode."""
+    """Creates and saves all required plots based on the analysis mode.
+
+    Delegates plotting tasks to specific functions based on whether the
+    mode is 'single' or 'multiple'. Separates sequential and interleaved
+    data before passing it to the plotting functions.
+
+    Args:
+        data (list[dict]): The parsed benchmark data, as returned by
+                           `parse_csv_files`.
+        plots_dir (Path): The directory where plots should be saved.
+        mode (str, optional): The analysis mode ('single' or 'multiple').
+                              Defaults to 'single'.
+        no_3d (bool, optional): If True, skips 3D plot generation in
+                                'multiple' mode. Defaults to False.
+    """
     log.info(f"Creating plots in {plots_dir} (mode: {mode})")
     plots_dir.mkdir(exist_ok=True)
     
@@ -174,10 +294,19 @@ def create_plots(data, plots_dir, mode='single', no_3d=False):
     except Exception as e:
         log.exception("An error occurred during plot creation.")
 
-# --- Single-Size Mode Plotting ---
+# --- Single-Size Mode Plotting Helpers ---
 
 def create_single_comparison_plot(sequential_data, interleaved_data, plots_dir):
-    """Create comparison plots between sequential and interleaved data (single-size mode)."""
+    """Creates a plot comparing Sequential vs Interleaved data for single-size mode.
+
+    Plots the mean latency with shaded min/max range for both data types
+    against the number of MPI ranks.
+
+    Args:
+        sequential_data (list[dict]): Parsed data for sequential runs.
+        interleaved_data (list[dict]): Parsed data for interleaved runs.
+        plots_dir (Path): The directory to save the plot.
+    """
     log.debug("Creating single-size comparison plot (Sequential vs Interleaved)...")
     try:
         s_ranks = [d['ranks'] for d in sequential_data]; s_means = [d['mean'] for d in sequential_data]
@@ -201,7 +330,21 @@ def create_single_comparison_plot(sequential_data, interleaved_data, plots_dir):
         log.exception("Failed to create single-size comparison plot.")
 
 def create_single_size_plots(data_set, title_prefix, plots_dir):
-    """Create the 2x2 analysis plots for a single data type (single-size mode)."""
+    """Creates the 2x2 analysis plot grid for single-size mode data.
+
+    Generates a single figure with four subplots:
+      1. Min/Max/Mean Latency vs. Ranks
+      2. Box Plot of Latency Distribution vs. Ranks
+      3. Sum of Latencies & Relative Efficiency vs. Ranks (Twin Axes)
+      4. Heatmap of Latency per Rank ID vs. Ranks
+
+    Args:
+        data_set (list[dict]): The parsed data for a specific allocation type
+                               (Sequential or Interleaved).
+        title_prefix (str): The prefix for the plot title and filename
+                            (e.g., "Sequential").
+        plots_dir (Path): The directory to save the plot.
+    """
     log.debug(f"Creating single-size 2x2 analysis plots for {title_prefix}...")
     try:
         fig = plt.figure(figsize=(16, 14))
@@ -295,17 +438,21 @@ def create_single_size_plots(data_set, title_prefix, plots_dir):
         plt.close('all')
 
 
-# --- Multi-Size Mode Plotting ---
+# --- Multi-Size Mode Plotting Helpers ---
 
-# Helper: Plot Mean vs Size (from analyze_multiple_sizes.py)
+# Helper: Plot Mean vs Size (adapted from analyze_multiple_sizes.py)
 # def _create_mean_vs_size_plot(data_set, title_prefix, plots_dir):
-#     """Creates plot showing Mean Latency vs Memory Size with Min/Max range."""
-#     log.debug(f"Creating Mean vs Size plot (with range) for {title_prefix}...")
-#     # ... (code removed)
+#     # ... (code removed, docstring would go here if kept)
 
 # Helper: Plot statistical metrics vs Size (from analyze_numa_results.py)
 def _create_multi_size_stats_plot(data_set, title_prefix, plots_dir):
-    """Creates the 2x2 plot: Median, Sum, P99, StdDev vs Memory Size."""
+    """Creates the 2x2 plot: Median, Sum, P99, StdDev vs Memory Size.
+
+    Args:
+        data_set (list[dict]): The parsed multi-size data for a specific type.
+        title_prefix (str): Prefix for title and filename (e.g., "Sequential").
+        plots_dir (Path): Directory to save the plot.
+    """
     log.debug(f"Creating Median/Sum/P99/StdDev vs Size plot (2x2) for {title_prefix}...")
     colors = plt.cm.tab20(np.linspace(0, 1, 20)); markers = ['o','s','^','v','<','>','p','*','h','D']
     try:
@@ -362,7 +509,16 @@ def _create_multi_size_stats_plot(data_set, title_prefix, plots_dir):
 
 # Main function calling the multi-size 2D plotting helpers
 def create_multi_size_plots(sequential_data, interleaved_data, plots_dir):
-    """Create all 2D plots for multiple memory size analysis."""
+    """Creates all 2D plots specific to multiple memory size analysis mode.
+
+    Currently generates the 2x2 statistical plot (Median, Sum, P99, StdDev
+    vs Memory Size).
+
+    Args:
+        sequential_data (list[dict]): Parsed data for sequential runs.
+        interleaved_data (list[dict]): Parsed data for interleaved runs.
+        plots_dir (Path): The directory to save plots.
+    """
     log.debug("Creating multi-size 2D plots...")
     if sequential_data:
         _create_multi_size_stats_plot(sequential_data, "Sequential", plots_dir)
@@ -375,7 +531,15 @@ def create_multi_size_plots(sequential_data, interleaved_data, plots_dir):
 
 # Helper: Fallback 2D Median plot (originally from analyze_numa_results.py)
 def _create_fallback_2d_median_plot(data_set, title_prefix, plots_dir):
-    """Create a 2D fallback visualization (using MEDIAN) when 3D plotting fails."""
+    """Creates a 2D plot of Median Latency vs Size as a fallback for 3D errors.
+
+    Plots median latency curves for each rank count against memory size.
+
+    Args:
+        data_set (list[dict]): The parsed multi-size data for a specific type.
+        title_prefix (str): Prefix for title and filename (e.g., "Sequential").
+        plots_dir (Path): Directory to save the plot.
+    """
     log.warning(f"Creating fallback 2D plot (Median Latency) for {title_prefix} due to 3D plot error.")
     try:
         plt.figure(figsize=(12, 8))
@@ -407,7 +571,17 @@ def _create_fallback_2d_median_plot(data_set, title_prefix, plots_dir):
 
 # Helper: 3D plot based on Median (adapted from analyze_numa_results.py)
 def _create_3d_median_plot(data_set, title_prefix, plots_dir):
-    """Creates the 3D surface plot showing Median Latency vs Ranks and Size."""
+    """Creates the 3D surface plot showing Median Latency vs Ranks and Size.
+
+    Generates a figure with two views (Side and Flat) and a central colorbar.
+    Requires data with at least 2 rank counts and 2 common memory sizes.
+    Calls `_create_fallback_2d_median_plot` if 3D plotting fails.
+
+    Args:
+        data_set (list[dict]): The parsed multi-size data for a specific type.
+        title_prefix (str): Prefix for title and filename (e.g., "Sequential").
+        plots_dir (Path): Directory to save the plot.
+    """
     log.debug(f"Creating 3D Median latency plot for {title_prefix}...")
     try:
         if not all('data_by_size' in d and d['data_by_size'] for d in data_set):
@@ -469,7 +643,16 @@ def _create_3d_median_plot(data_set, title_prefix, plots_dir):
 
 # Main function calling 3D plotting helpers
 def create_3d_plots(sequential_data, interleaved_data, plots_dir):
-    """Create 3D plots (Median based only) for multi-size mode."""
+    """Creates 3D plots (Median based only) for multi-size mode.
+
+    Calls the helper function to generate the Median latency 3D surface plots
+    for both sequential and interleaved data if available.
+
+    Args:
+        sequential_data (list[dict]): Parsed data for sequential runs.
+        interleaved_data (list[dict]): Parsed data for interleaved runs.
+        plots_dir (Path): The directory to save plots.
+    """
     log.info("Creating 3D plots (Median based only)...")
     if sequential_data:
          _create_3d_median_plot(sequential_data, "Sequential", plots_dir)
@@ -480,7 +663,17 @@ def create_3d_plots(sequential_data, interleaved_data, plots_dir):
 # --- Size Comparison Plotting (Multi-Size) ---
 
 def create_size_comparison_plots(sequential_data, interleaved_data, plots_dir):
-    """Create comparison plots for different memory sizes (multi-size mode)."""
+    """Creates comparison plots (Sequential vs Interleaved) for common memory sizes.
+
+    For each memory size found in *both* sequential and interleaved data,
+    generates a plot comparing their mean latencies (with min/max range)
+    against the number of MPI ranks.
+
+    Args:
+        sequential_data (list[dict]): Parsed data for sequential runs.
+        interleaved_data (list[dict]): Parsed data for interleaved runs.
+        plots_dir (Path): The directory to save plots.
+    """
     log.debug("Creating size comparison plots (multiple sizes)...")
     if not (interleaved_data and sequential_data):
         log.info("Skipping size comparison plots (need both sequential and interleaved multi-size data).")
@@ -538,7 +731,17 @@ def create_size_comparison_plots(sequential_data, interleaved_data, plots_dir):
 # --- Summary File Creation ---
 
 def create_summary(data, job_dir, mode='single'):
-    """Create a summary text file with statistical analysis."""
+    """Creates a text summary file with statistical analysis results.
+
+    Writes calculated statistics (mean, std, min, max, CoV) to
+    `analysis_summary.txt` in the plots subdirectory.
+    The content format depends on the analysis mode ('single' or 'multiple').
+
+    Args:
+        data (list[dict]): The parsed benchmark data.
+        job_dir (Path): The path to the main job directory.
+        mode (str): The analysis mode ('single' or 'multiple') used.
+    """
     log.info("Creating analysis summary file...")
     summary_file = job_dir / 'plots' / 'analysis_summary.txt'
     plots_dir = job_dir / 'plots' # Ensure plots_dir exists
@@ -595,30 +798,54 @@ def create_summary(data, job_dir, mode='single'):
 # --- Main Execution ---
 
 def main():
+    """Main execution function.
+
+    Parses arguments, sets up logging, creates the plots directory,
+    parses CSV data, creates plots based on the detected/specified mode,
+    and generates the summary text file.
+    Handles potential errors during parsing and analysis.
+    """
     args = parse_args()
-    
-    # Setup logging level
+
+    # Setup logging level based on verbosity
     if args.verbose: log.setLevel(logging.DEBUG); log.info("Verbose logging enabled.")
     else: log.setLevel(logging.INFO)
-        
+
     job_dir = args.job_dir
+    # Define plots_dir early and ensure it exists
     plots_dir = job_dir / 'plots'
     try:
          plots_dir.mkdir(exist_ok=True); log.debug(f"Ensured plots directory exists: {plots_dir}")
-    except OSError as e: log.error(f"Could not create plots directory {plots_dir}: {e}"); sys.exit(1)
-    
-    # Parse data and get mode
-    data, detected_mode = parse_csv_files(job_dir, args.mode, verbose=args.verbose)
-    
-    # Create plots based on mode
-    create_plots(data, plots_dir, detected_mode, args.no_3d)
-    
-    # Create summary
-    create_summary(data, job_dir, detected_mode)
-    
-    log.info(f"Analysis complete. Results saved in {job_dir}")
-    log.info(f"Plots saved in {plots_dir}")
-    log.info(f"Summary saved in {plots_dir}/analysis_summary.txt")
+    except OSError as e:
+         # Log specific error for directory creation failure
+         log.error(f"Could not create plots directory {plots_dir}: {e}");
+         sys.exit(1) # Exit here, as we can't save plots/summary
+
+    # --- Run Analysis within a try block to catch custom errors --- 
+    try:
+        # Parse data and get detected/specified mode
+        data, detected_mode = parse_csv_files(job_dir, args.mode, verbose=args.verbose)
+
+        # Create plots based on mode
+        # Plotting errors are logged within create_plots but don't stop summary generation
+        create_plots(data, plots_dir, detected_mode, args.no_3d)
+
+        # Create summary file
+        # Summary creation errors are logged within create_summary
+        create_summary(data, job_dir, detected_mode)
+
+        log.info(f"Analysis complete. Results saved in {job_dir}")
+        log.info(f"Plots saved in {plots_dir}")
+        log.info(f"Summary saved in {plots_dir}/analysis_summary.txt")
+
+    # Catch specific data parsing errors
+    except DataParsingError as e:
+        log.error(f"Data Parsing Failed: {e}")
+        sys.exit(1) # Exit on critical data parsing errors
+    # Catch unexpected errors during the main analysis workflow
+    except Exception as e:
+        log.exception(f"A critical error occurred during the analysis workflow: {e}") # Log full traceback
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
