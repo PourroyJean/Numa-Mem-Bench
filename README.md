@@ -371,7 +371,7 @@ The script generates various plots depending on the input data:
    - Detailed per-rank latency vs size plots
    
    ![Detailed Latency vs Size](examples/example4_all_cores_1_to_512MB/job_10417456_lumig_all_cores_interleaved_multiple_sizes/plots/3d_median_latency.png)
-   ![Detailed Latency vs Size](examples/example4_all_cores_1_to_512MB/job_10417456_lumig_all_cores_interleaved_multiple_sizes/plots/multi_size_stats.pn)
+   ![Detailed Latency vs Size](examples/example4_all_cores_1_to_512MB/job_10417456_lumig_all_cores_interleaved_multiple_sizes/plots/multi_size_stats.png)
 
 3. **With NUMA Mapping**: When a mapping file is provided, additional NUMA-specific visualizations are generated:
    - Average latency by NUMA node with standard deviation
