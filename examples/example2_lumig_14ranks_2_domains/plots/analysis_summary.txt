@@ -1,0 +1,105 @@
+NUMA Benchmark Analysis Summary
+=============================
+
+Analysis Mode: multiple
+Source Directory: /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/examples/FINAL/example2_lumig_14ranks_2_domains
+
+Statistical Analysis per Rank Count and Memory Size:
+------------------------------------------------
+
+14 ranks (example2_lumig_14ranks_2_domains_14ranks.csv):
+  Memory Size: 1 MB
+    Mean latency: 13.34 ns
+    Std dev:      1.64 ns
+    Min latency:  11.86 ns
+    Max latency:  17.74 ns
+    Range:        5.88 ns
+    CoV:          12.31%
+
+  Memory Size: 2 MB
+    Mean latency: 15.99 ns
+    Std dev:      1.85 ns
+    Min latency:  14.84 ns
+    Max latency:  22.21 ns
+    Range:        7.37 ns
+    CoV:          11.58%
+
+  Memory Size: 4 MB
+    Mean latency: 22.96 ns
+    Std dev:      7.26 ns
+    Min latency:  16.76 ns
+    Max latency:  46.38 ns
+    Range:        29.62 ns
+    CoV:          31.62%
+
+  Memory Size: 8 MB
+    Mean latency: 44.75 ns
+    Std dev:      26.51 ns
+    Min latency:  17.37 ns
+    Max latency:  107.08 ns
+    Range:        89.71 ns
+    CoV:          59.25%
+
+  Memory Size: 16 MB
+    Mean latency: 99.89 ns
+    Std dev:      34.97 ns
+    Min latency:  22.22 ns
+    Max latency:  158.02 ns
+    Range:        135.80 ns
+    CoV:          35.01%
+
+  Memory Size: 32 MB
+    Mean latency: 138.36 ns
+    Std dev:      51.78 ns
+    Min latency:  74.99 ns
+    Max latency:  245.05 ns
+    Range:        170.06 ns
+    CoV:          37.42%
+
+  Memory Size: 64 MB
+    Mean latency: 129.93 ns
+    Std dev:      22.38 ns
+    Min latency:  100.45 ns
+    Max latency:  170.08 ns
+    Range:        69.63 ns
+    CoV:          17.22%
+
+  Memory Size: 128 MB
+    Mean latency: 169.51 ns
+    Std dev:      53.54 ns
+    Min latency:  100.83 ns
+    Max latency:  249.21 ns
+    Range:        148.38 ns
+    CoV:          31.59%
+
+  Memory Size: 256 MB
+    Mean latency: 188.55 ns
+    Std dev:      72.87 ns
+    Min latency:  106.18 ns
+    Max latency:  329.46 ns
+    Range:        223.28 ns
+    CoV:          38.65%
+
+  Memory Size: 512 MB
+    Mean latency: 236.38 ns
+    Std dev:      101.47 ns
+    Min latency:  123.13 ns
+    Max latency:  402.06 ns
+    Range:        278.93 ns
+    CoV:          42.93%
+
+  Memory Size: 1024 MB
+    Mean latency: 288.80 ns
+    Std dev:      105.12 ns
+    Min latency:  127.52 ns
+    Max latency:  421.90 ns
+    Range:        294.38 ns
+    CoV:          36.40%
+
+  Memory Size: 2048 MB
+    Mean latency: 282.10 ns
+    Std dev:      104.52 ns
+    Min latency:  131.78 ns
+    Max latency:  469.08 ns
+    Range:        337.30 ns
+    CoV:          37.05%

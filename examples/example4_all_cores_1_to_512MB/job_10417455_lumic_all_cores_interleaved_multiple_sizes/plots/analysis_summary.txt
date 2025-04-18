@@ -1,0 +1,1304 @@
+NUMA Benchmark Analysis Summary
+=============================
+
+Analysis Mode: multiple
+Source Directory: /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/examples/example4_all_cores_1_to_512MB/job_10417455_lumic_all_cores_interleaved_multiple_sizes
+
+Statistical Analysis per Rank Count and Memory Size:
+------------------------------------------------
+
+8 ranks (interleaved_domains0,1,2,3,4,5,6,7_8ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 10.38 ns
+    Std dev:      0.01 ns
+    Min latency:  10.36 ns
+    Max latency:  10.40 ns
+    Range:        0.04 ns
+    CoV:          0.13%
+
+  Memory Size: 2 MB
+    Mean latency: 12.98 ns
+    Std dev:      0.02 ns
+    Min latency:  12.95 ns
+    Max latency:  13.01 ns
+    Range:        0.06 ns
+    CoV:          0.15%
+
+  Memory Size: 4 MB
+    Mean latency: 14.28 ns
+    Std dev:      0.03 ns
+    Min latency:  14.26 ns
+    Max latency:  14.35 ns
+    Range:        0.09 ns
+    CoV:          0.19%
+
+  Memory Size: 8 MB
+    Mean latency: 14.73 ns
+    Std dev:      0.84 ns
+    Min latency:  14.37 ns
+    Max latency:  16.95 ns
+    Range:        2.58 ns
+    CoV:          5.70%
+
+  Memory Size: 16 MB
+    Mean latency: 15.25 ns
+    Std dev:      0.09 ns
+    Min latency:  15.04 ns
+    Max latency:  15.34 ns
+    Range:        0.30 ns
+    CoV:          0.57%
+
+  Memory Size: 32 MB
+    Mean latency: 27.50 ns
+    Std dev:      0.15 ns
+    Min latency:  27.31 ns
+    Max latency:  27.80 ns
+    Range:        0.49 ns
+    CoV:          0.53%
+
+  Memory Size: 64 MB
+    Mean latency: 58.58 ns
+    Std dev:      0.31 ns
+    Min latency:  58.01 ns
+    Max latency:  58.98 ns
+    Range:        0.97 ns
+    CoV:          0.52%
+
+  Memory Size: 128 MB
+    Mean latency: 73.60 ns
+    Std dev:      0.40 ns
+    Min latency:  72.89 ns
+    Max latency:  74.00 ns
+    Range:        1.11 ns
+    CoV:          0.54%
+
+  Memory Size: 256 MB
+    Mean latency: 81.35 ns
+    Std dev:      0.55 ns
+    Min latency:  80.66 ns
+    Max latency:  82.13 ns
+    Range:        1.47 ns
+    CoV:          0.67%
+
+  Memory Size: 512 MB
+    Mean latency: 84.89 ns
+    Std dev:      0.43 ns
+    Min latency:  84.16 ns
+    Max latency:  85.59 ns
+    Range:        1.43 ns
+    CoV:          0.51%
+
+16 ranks (interleaved_domains0,1,2,3,4,5,6,7_16ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 10.52 ns
+    Std dev:      0.11 ns
+    Min latency:  10.35 ns
+    Max latency:  10.66 ns
+    Range:        0.31 ns
+    CoV:          1.08%
+
+  Memory Size: 2 MB
+    Mean latency: 12.97 ns
+    Std dev:      0.01 ns
+    Min latency:  12.95 ns
+    Max latency:  12.99 ns
+    Range:        0.04 ns
+    CoV:          0.09%
+
+  Memory Size: 4 MB
+    Mean latency: 14.27 ns
+    Std dev:      0.01 ns
+    Min latency:  14.26 ns
+    Max latency:  14.30 ns
+    Range:        0.04 ns
+    CoV:          0.09%
+
+  Memory Size: 8 MB
+    Mean latency: 14.43 ns
+    Std dev:      0.07 ns
+    Min latency:  14.37 ns
+    Max latency:  14.60 ns
+    Range:        0.23 ns
+    CoV:          0.46%
+
+  Memory Size: 16 MB
+    Mean latency: 15.14 ns
+    Std dev:      0.05 ns
+    Min latency:  15.05 ns
+    Max latency:  15.20 ns
+    Range:        0.15 ns
+    CoV:          0.33%
+
+  Memory Size: 32 MB
+    Mean latency: 27.73 ns
+    Std dev:      0.43 ns
+    Min latency:  27.33 ns
+    Max latency:  29.17 ns
+    Range:        1.84 ns
+    CoV:          1.56%
+
+  Memory Size: 64 MB
+    Mean latency: 61.94 ns
+    Std dev:      3.78 ns
+    Min latency:  58.49 ns
+    Max latency:  72.81 ns
+    Range:        14.32 ns
+    CoV:          6.10%
+
+  Memory Size: 128 MB
+    Mean latency: 80.79 ns
+    Std dev:      8.39 ns
+    Min latency:  73.92 ns
+    Max latency:  99.14 ns
+    Range:        25.22 ns
+    CoV:          10.39%
+
+  Memory Size: 256 MB
+    Mean latency: 93.06 ns
+    Std dev:      12.28 ns
+    Min latency:  81.74 ns
+    Max latency:  111.56 ns
+    Range:        29.82 ns
+    CoV:          13.19%
+
+  Memory Size: 512 MB
+    Mean latency: 102.24 ns
+    Std dev:      16.91 ns
+    Min latency:  84.74 ns
+    Max latency:  119.69 ns
+    Range:        34.95 ns
+    CoV:          16.54%
+
+24 ranks (interleaved_domains0,1,2,3,4,5,6,7_24ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 11.77 ns
+    Std dev:      0.24 ns
+    Min latency:  11.58 ns
+    Max latency:  12.34 ns
+    Range:        0.76 ns
+    CoV:          2.06%
+
+  Memory Size: 2 MB
+    Mean latency: 15.07 ns
+    Std dev:      0.65 ns
+    Min latency:  14.58 ns
+    Max latency:  16.45 ns
+    Range:        1.87 ns
+    CoV:          4.34%
+
+  Memory Size: 4 MB
+    Mean latency: 16.12 ns
+    Std dev:      0.21 ns
+    Min latency:  15.95 ns
+    Max latency:  16.92 ns
+    Range:        0.97 ns
+    CoV:          1.30%
+
+  Memory Size: 8 MB
+    Mean latency: 16.93 ns
+    Std dev:      1.33 ns
+    Min latency:  16.07 ns
+    Max latency:  21.29 ns
+    Range:        5.22 ns
+    CoV:          7.85%
+
+  Memory Size: 16 MB
+    Mean latency: 25.19 ns
+    Std dev:      9.39 ns
+    Min latency:  16.91 ns
+    Max latency:  41.36 ns
+    Range:        24.45 ns
+    CoV:          37.26%
+
+  Memory Size: 32 MB
+    Mean latency: 51.53 ns
+    Std dev:      27.28 ns
+    Min latency:  28.81 ns
+    Max latency:  103.11 ns
+    Range:        74.30 ns
+    CoV:          52.95%
+
+  Memory Size: 64 MB
+    Mean latency: 74.78 ns
+    Std dev:      15.49 ns
+    Min latency:  61.33 ns
+    Max latency:  105.04 ns
+    Range:        43.71 ns
+    CoV:          20.72%
+
+  Memory Size: 128 MB
+    Mean latency: 87.23 ns
+    Std dev:      15.15 ns
+    Min latency:  75.12 ns
+    Max latency:  123.57 ns
+    Range:        48.45 ns
+    CoV:          17.37%
+
+  Memory Size: 256 MB
+    Mean latency: 112.14 ns
+    Std dev:      24.29 ns
+    Min latency:  82.03 ns
+    Max latency:  145.78 ns
+    Range:        63.75 ns
+    CoV:          21.66%
+
+  Memory Size: 512 MB
+    Mean latency: 121.78 ns
+    Std dev:      29.88 ns
+    Min latency:  85.26 ns
+    Max latency:  159.98 ns
+    Range:        74.72 ns
+    CoV:          24.53%
+
+32 ranks (interleaved_domains0,1,2,3,4,5,6,7_32ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 11.91 ns
+    Std dev:      0.30 ns
+    Min latency:  11.61 ns
+    Max latency:  12.46 ns
+    Range:        0.85 ns
+    CoV:          2.55%
+
+  Memory Size: 2 MB
+    Mean latency: 15.28 ns
+    Std dev:      0.77 ns
+    Min latency:  14.53 ns
+    Max latency:  16.63 ns
+    Range:        2.10 ns
+    CoV:          5.06%
+
+  Memory Size: 4 MB
+    Mean latency: 16.69 ns
+    Std dev:      0.95 ns
+    Min latency:  15.85 ns
+    Max latency:  19.38 ns
+    Range:        3.53 ns
+    CoV:          5.71%
+
+  Memory Size: 8 MB
+    Mean latency: 17.68 ns
+    Std dev:      2.12 ns
+    Min latency:  16.19 ns
+    Max latency:  23.40 ns
+    Range:        7.21 ns
+    CoV:          12.01%
+
+  Memory Size: 16 MB
+    Mean latency: 29.81 ns
+    Std dev:      7.85 ns
+    Min latency:  18.71 ns
+    Max latency:  42.31 ns
+    Range:        23.60 ns
+    CoV:          26.33%
+
+  Memory Size: 32 MB
+    Mean latency: 65.61 ns
+    Std dev:      31.93 ns
+    Min latency:  29.01 ns
+    Max latency:  150.20 ns
+    Range:        121.19 ns
+    CoV:          48.67%
+
+  Memory Size: 64 MB
+    Mean latency: 90.96 ns
+    Std dev:      22.24 ns
+    Min latency:  61.08 ns
+    Max latency:  129.95 ns
+    Range:        68.87 ns
+    CoV:          24.45%
+
+  Memory Size: 128 MB
+    Mean latency: 101.87 ns
+    Std dev:      22.48 ns
+    Min latency:  77.38 ns
+    Max latency:  157.32 ns
+    Range:        79.94 ns
+    CoV:          22.07%
+
+  Memory Size: 256 MB
+    Mean latency: 110.50 ns
+    Std dev:      26.36 ns
+    Min latency:  83.92 ns
+    Max latency:  173.92 ns
+    Range:        90.00 ns
+    CoV:          23.86%
+
+  Memory Size: 512 MB
+    Mean latency: 121.01 ns
+    Std dev:      32.85 ns
+    Min latency:  89.37 ns
+    Max latency:  182.79 ns
+    Range:        93.42 ns
+    CoV:          27.14%
+
+40 ranks (interleaved_domains0,1,2,3,4,5,6,7_40ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.10 ns
+    Std dev:      0.36 ns
+    Min latency:  11.62 ns
+    Max latency:  13.22 ns
+    Range:        1.60 ns
+    CoV:          2.98%
+
+  Memory Size: 2 MB
+    Mean latency: 15.17 ns
+    Std dev:      0.82 ns
+    Min latency:  14.30 ns
+    Max latency:  17.99 ns
+    Range:        3.69 ns
+    CoV:          5.43%
+
+  Memory Size: 4 MB
+    Mean latency: 17.40 ns
+    Std dev:      1.92 ns
+    Min latency:  16.05 ns
+    Max latency:  24.42 ns
+    Range:        8.37 ns
+    CoV:          11.02%
+
+  Memory Size: 8 MB
+    Mean latency: 19.28 ns
+    Std dev:      4.00 ns
+    Min latency:  16.09 ns
+    Max latency:  34.18 ns
+    Range:        18.09 ns
+    CoV:          20.75%
+
+  Memory Size: 16 MB
+    Mean latency: 39.84 ns
+    Std dev:      18.35 ns
+    Min latency:  16.75 ns
+    Max latency:  89.42 ns
+    Range:        72.67 ns
+    CoV:          46.04%
+
+  Memory Size: 32 MB
+    Mean latency: 72.77 ns
+    Std dev:      20.35 ns
+    Min latency:  31.72 ns
+    Max latency:  106.58 ns
+    Range:        74.86 ns
+    CoV:          27.96%
+
+  Memory Size: 64 MB
+    Mean latency: 114.86 ns
+    Std dev:      31.45 ns
+    Min latency:  59.80 ns
+    Max latency:  173.68 ns
+    Range:        113.88 ns
+    CoV:          27.38%
+
+  Memory Size: 128 MB
+    Mean latency: 133.85 ns
+    Std dev:      34.45 ns
+    Min latency:  75.50 ns
+    Max latency:  181.33 ns
+    Range:        105.83 ns
+    CoV:          25.74%
+
+  Memory Size: 256 MB
+    Mean latency: 142.43 ns
+    Std dev:      36.84 ns
+    Min latency:  82.44 ns
+    Max latency:  192.41 ns
+    Range:        109.97 ns
+    CoV:          25.86%
+
+  Memory Size: 512 MB
+    Mean latency: 152.04 ns
+    Std dev:      39.63 ns
+    Min latency:  85.83 ns
+    Max latency:  204.95 ns
+    Range:        119.12 ns
+    CoV:          26.06%
+
+48 ranks (interleaved_domains0,1,2,3,4,5,6,7_48ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.18 ns
+    Std dev:      0.58 ns
+    Min latency:  11.63 ns
+    Max latency:  13.59 ns
+    Range:        1.96 ns
+    CoV:          4.76%
+
+  Memory Size: 2 MB
+    Mean latency: 15.60 ns
+    Std dev:      1.23 ns
+    Min latency:  14.44 ns
+    Max latency:  18.95 ns
+    Range:        4.51 ns
+    CoV:          7.91%
+
+  Memory Size: 4 MB
+    Mean latency: 17.75 ns
+    Std dev:      2.79 ns
+    Min latency:  16.01 ns
+    Max latency:  27.18 ns
+    Range:        11.17 ns
+    CoV:          15.70%
+
+  Memory Size: 8 MB
+    Mean latency: 19.76 ns
+    Std dev:      3.20 ns
+    Min latency:  16.27 ns
+    Max latency:  31.21 ns
+    Range:        14.94 ns
+    CoV:          16.19%
+
+  Memory Size: 16 MB
+    Mean latency: 49.11 ns
+    Std dev:      24.96 ns
+    Min latency:  16.74 ns
+    Max latency:  108.20 ns
+    Range:        91.46 ns
+    CoV:          50.82%
+
+  Memory Size: 32 MB
+    Mean latency: 91.66 ns
+    Std dev:      36.32 ns
+    Min latency:  29.27 ns
+    Max latency:  186.92 ns
+    Range:        157.65 ns
+    CoV:          39.63%
+
+  Memory Size: 64 MB
+    Mean latency: 107.10 ns
+    Std dev:      31.69 ns
+    Min latency:  69.23 ns
+    Max latency:  188.47 ns
+    Range:        119.24 ns
+    CoV:          29.59%
+
+  Memory Size: 128 MB
+    Mean latency: 122.35 ns
+    Std dev:      37.00 ns
+    Min latency:  83.82 ns
+    Max latency:  201.56 ns
+    Range:        117.74 ns
+    CoV:          30.25%
+
+  Memory Size: 256 MB
+    Mean latency: 138.19 ns
+    Std dev:      39.65 ns
+    Min latency:  82.51 ns
+    Max latency:  204.74 ns
+    Range:        122.23 ns
+    CoV:          28.70%
+
+  Memory Size: 512 MB
+    Mean latency: 155.98 ns
+    Std dev:      41.71 ns
+    Min latency:  86.98 ns
+    Max latency:  217.51 ns
+    Range:        130.53 ns
+    CoV:          26.74%
+
+56 ranks (interleaved_domains0,1,2,3,4,5,6,7_56ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.21 ns
+    Std dev:      0.71 ns
+    Min latency:  11.63 ns
+    Max latency:  14.69 ns
+    Range:        3.06 ns
+    CoV:          5.84%
+
+  Memory Size: 2 MB
+    Mean latency: 16.20 ns
+    Std dev:      2.12 ns
+    Min latency:  14.52 ns
+    Max latency:  22.05 ns
+    Range:        7.53 ns
+    CoV:          13.09%
+
+  Memory Size: 4 MB
+    Mean latency: 18.25 ns
+    Std dev:      3.41 ns
+    Min latency:  15.98 ns
+    Max latency:  32.58 ns
+    Range:        16.60 ns
+    CoV:          18.70%
+
+  Memory Size: 8 MB
+    Mean latency: 25.12 ns
+    Std dev:      7.90 ns
+    Min latency:  16.09 ns
+    Max latency:  53.53 ns
+    Range:        37.44 ns
+    CoV:          31.45%
+
+  Memory Size: 16 MB
+    Mean latency: 48.37 ns
+    Std dev:      26.77 ns
+    Min latency:  16.10 ns
+    Max latency:  105.17 ns
+    Range:        89.07 ns
+    CoV:          55.33%
+
+  Memory Size: 32 MB
+    Mean latency: 94.44 ns
+    Std dev:      38.09 ns
+    Min latency:  29.11 ns
+    Max latency:  191.58 ns
+    Range:        162.47 ns
+    CoV:          40.34%
+
+  Memory Size: 64 MB
+    Mean latency: 142.36 ns
+    Std dev:      47.59 ns
+    Min latency:  66.55 ns
+    Max latency:  204.76 ns
+    Range:        138.21 ns
+    CoV:          33.43%
+
+  Memory Size: 128 MB
+    Mean latency: 154.54 ns
+    Std dev:      46.05 ns
+    Min latency:  75.39 ns
+    Max latency:  221.90 ns
+    Range:        146.51 ns
+    CoV:          29.80%
+
+  Memory Size: 256 MB
+    Mean latency: 166.97 ns
+    Std dev:      49.22 ns
+    Min latency:  83.28 ns
+    Max latency:  232.91 ns
+    Range:        149.63 ns
+    CoV:          29.48%
+
+  Memory Size: 512 MB
+    Mean latency: 170.11 ns
+    Std dev:      49.60 ns
+    Min latency:  86.19 ns
+    Max latency:  239.95 ns
+    Range:        153.76 ns
+    CoV:          29.16%
+
+64 ranks (interleaved_domains0,1,2,3,4,5,6,7_64ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.22 ns
+    Std dev:      0.73 ns
+    Min latency:  11.61 ns
+    Max latency:  14.63 ns
+    Range:        3.02 ns
+    CoV:          5.99%
+
+  Memory Size: 2 MB
+    Mean latency: 16.13 ns
+    Std dev:      2.19 ns
+    Min latency:  14.65 ns
+    Max latency:  22.29 ns
+    Range:        7.64 ns
+    CoV:          13.59%
+
+  Memory Size: 4 MB
+    Mean latency: 17.30 ns
+    Std dev:      3.55 ns
+    Min latency:  14.89 ns
+    Max latency:  33.86 ns
+    Range:        18.97 ns
+    CoV:          20.52%
+
+  Memory Size: 8 MB
+    Mean latency: 26.14 ns
+    Std dev:      5.89 ns
+    Min latency:  17.18 ns
+    Max latency:  54.08 ns
+    Range:        36.90 ns
+    CoV:          22.54%
+
+  Memory Size: 16 MB
+    Mean latency: 53.61 ns
+    Std dev:      36.87 ns
+    Min latency:  14.91 ns
+    Max latency:  176.41 ns
+    Range:        161.50 ns
+    CoV:          68.76%
+
+  Memory Size: 32 MB
+    Mean latency: 111.43 ns
+    Std dev:      51.95 ns
+    Min latency:  26.96 ns
+    Max latency:  219.87 ns
+    Range:        192.91 ns
+    CoV:          46.62%
+
+  Memory Size: 64 MB
+    Mean latency: 127.98 ns
+    Std dev:      41.24 ns
+    Min latency:  65.72 ns
+    Max latency:  215.15 ns
+    Range:        149.43 ns
+    CoV:          32.23%
+
+  Memory Size: 128 MB
+    Mean latency: 129.28 ns
+    Std dev:      35.21 ns
+    Min latency:  80.45 ns
+    Max latency:  210.70 ns
+    Range:        130.25 ns
+    CoV:          27.24%
+
+  Memory Size: 256 MB
+    Mean latency: 147.86 ns
+    Std dev:      44.86 ns
+    Min latency:  84.70 ns
+    Max latency:  241.89 ns
+    Range:        157.19 ns
+    CoV:          30.34%
+
+  Memory Size: 512 MB
+    Mean latency: 172.12 ns
+    Std dev:      48.92 ns
+    Min latency:  87.03 ns
+    Max latency:  247.62 ns
+    Range:        160.59 ns
+    CoV:          28.42%
+
+72 ranks (interleaved_domains0,1,2,3,4,5,6,7_72ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.72 ns
+    Std dev:      0.91 ns
+    Min latency:  11.78 ns
+    Max latency:  15.50 ns
+    Range:        3.72 ns
+    CoV:          7.14%
+
+  Memory Size: 2 MB
+    Mean latency: 16.55 ns
+    Std dev:      2.78 ns
+    Min latency:  14.55 ns
+    Max latency:  27.29 ns
+    Range:        12.74 ns
+    CoV:          16.79%
+
+  Memory Size: 4 MB
+    Mean latency: 17.29 ns
+    Std dev:      3.36 ns
+    Min latency:  14.85 ns
+    Max latency:  31.21 ns
+    Range:        16.36 ns
+    CoV:          19.45%
+
+  Memory Size: 8 MB
+    Mean latency: 38.66 ns
+    Std dev:      17.10 ns
+    Min latency:  15.64 ns
+    Max latency:  77.49 ns
+    Range:        61.85 ns
+    CoV:          44.22%
+
+  Memory Size: 16 MB
+    Mean latency: 58.55 ns
+    Std dev:      38.20 ns
+    Min latency:  14.90 ns
+    Max latency:  169.68 ns
+    Range:        154.78 ns
+    CoV:          65.24%
+
+  Memory Size: 32 MB
+    Mean latency: 136.09 ns
+    Std dev:      58.11 ns
+    Min latency:  39.18 ns
+    Max latency:  230.46 ns
+    Range:        191.28 ns
+    CoV:          42.70%
+
+  Memory Size: 64 MB
+    Mean latency: 161.06 ns
+    Std dev:      55.02 ns
+    Min latency:  71.58 ns
+    Max latency:  236.81 ns
+    Range:        165.23 ns
+    CoV:          34.16%
+
+  Memory Size: 128 MB
+    Mean latency: 170.67 ns
+    Std dev:      55.73 ns
+    Min latency:  79.93 ns
+    Max latency:  239.61 ns
+    Range:        159.68 ns
+    CoV:          32.65%
+
+  Memory Size: 256 MB
+    Mean latency: 183.52 ns
+    Std dev:      58.71 ns
+    Min latency:  85.71 ns
+    Max latency:  248.27 ns
+    Range:        162.56 ns
+    CoV:          31.99%
+
+  Memory Size: 512 MB
+    Mean latency: 187.02 ns
+    Std dev:      51.97 ns
+    Min latency:  89.77 ns
+    Max latency:  261.53 ns
+    Range:        171.76 ns
+    CoV:          27.79%
+
+80 ranks (interleaved_domains0,1,2,3,4,5,6,7_80ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 13.27 ns
+    Std dev:      1.15 ns
+    Min latency:  12.08 ns
+    Max latency:  16.42 ns
+    Range:        4.34 ns
+    CoV:          8.67%
+
+  Memory Size: 2 MB
+    Mean latency: 16.83 ns
+    Std dev:      2.77 ns
+    Min latency:  14.76 ns
+    Max latency:  25.83 ns
+    Range:        11.07 ns
+    CoV:          16.46%
+
+  Memory Size: 4 MB
+    Mean latency: 20.80 ns
+    Std dev:      6.51 ns
+    Min latency:  16.13 ns
+    Max latency:  40.69 ns
+    Range:        24.56 ns
+    CoV:          31.32%
+
+  Memory Size: 8 MB
+    Mean latency: 43.12 ns
+    Std dev:      25.29 ns
+    Min latency:  17.14 ns
+    Max latency:  99.45 ns
+    Range:        82.31 ns
+    CoV:          58.66%
+
+  Memory Size: 16 MB
+    Mean latency: 85.22 ns
+    Std dev:      50.80 ns
+    Min latency:  16.80 ns
+    Max latency:  210.51 ns
+    Range:        193.71 ns
+    CoV:          59.61%
+
+  Memory Size: 32 MB
+    Mean latency: 132.50 ns
+    Std dev:      55.50 ns
+    Min latency:  40.41 ns
+    Max latency:  247.99 ns
+    Range:        207.58 ns
+    CoV:          41.89%
+
+  Memory Size: 64 MB
+    Mean latency: 137.11 ns
+    Std dev:      42.00 ns
+    Min latency:  68.77 ns
+    Max latency:  235.91 ns
+    Range:        167.14 ns
+    CoV:          30.63%
+
+  Memory Size: 128 MB
+    Mean latency: 156.16 ns
+    Std dev:      50.81 ns
+    Min latency:  82.12 ns
+    Max latency:  264.47 ns
+    Range:        182.35 ns
+    CoV:          32.53%
+
+  Memory Size: 256 MB
+    Mean latency: 173.33 ns
+    Std dev:      58.36 ns
+    Min latency:  86.35 ns
+    Max latency:  267.95 ns
+    Range:        181.60 ns
+    CoV:          33.67%
+
+  Memory Size: 512 MB
+    Mean latency: 180.99 ns
+    Std dev:      53.91 ns
+    Min latency:  89.99 ns
+    Max latency:  270.59 ns
+    Range:        180.60 ns
+    CoV:          29.78%
+
+88 ranks (interleaved_domains0,1,2,3,4,5,6,7_88ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.52 ns
+    Std dev:      0.98 ns
+    Min latency:  11.65 ns
+    Max latency:  16.48 ns
+    Range:        4.83 ns
+    CoV:          7.79%
+
+  Memory Size: 2 MB
+    Mean latency: 16.64 ns
+    Std dev:      2.35 ns
+    Min latency:  14.56 ns
+    Max latency:  25.27 ns
+    Range:        10.71 ns
+    CoV:          14.10%
+
+  Memory Size: 4 MB
+    Mean latency: 24.65 ns
+    Std dev:      9.57 ns
+    Min latency:  15.97 ns
+    Max latency:  55.26 ns
+    Range:        39.29 ns
+    CoV:          38.85%
+
+  Memory Size: 8 MB
+    Mean latency: 45.68 ns
+    Std dev:      30.43 ns
+    Min latency:  16.19 ns
+    Max latency:  119.33 ns
+    Range:        103.14 ns
+    CoV:          66.62%
+
+  Memory Size: 16 MB
+    Mean latency: 79.55 ns
+    Std dev:      48.69 ns
+    Min latency:  16.06 ns
+    Max latency:  217.05 ns
+    Range:        200.99 ns
+    CoV:          61.20%
+
+  Memory Size: 32 MB
+    Mean latency: 155.94 ns
+    Std dev:      54.13 ns
+    Min latency:  47.81 ns
+    Max latency:  231.93 ns
+    Range:        184.12 ns
+    CoV:          34.71%
+
+  Memory Size: 64 MB
+    Mean latency: 171.00 ns
+    Std dev:      53.59 ns
+    Min latency:  73.69 ns
+    Max latency:  256.48 ns
+    Range:        182.79 ns
+    CoV:          31.34%
+
+  Memory Size: 128 MB
+    Mean latency: 176.63 ns
+    Std dev:      55.00 ns
+    Min latency:  83.10 ns
+    Max latency:  262.55 ns
+    Range:        179.45 ns
+    CoV:          31.14%
+
+  Memory Size: 256 MB
+    Mean latency: 186.77 ns
+    Std dev:      57.49 ns
+    Min latency:  88.01 ns
+    Max latency:  290.26 ns
+    Range:        202.25 ns
+    CoV:          30.78%
+
+  Memory Size: 512 MB
+    Mean latency: 192.22 ns
+    Std dev:      53.63 ns
+    Min latency:  93.34 ns
+    Max latency:  323.21 ns
+    Range:        229.87 ns
+    CoV:          27.90%
+
+96 ranks (interleaved_domains0,1,2,3,4,5,6,7_96ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.57 ns
+    Std dev:      0.89 ns
+    Min latency:  11.69 ns
+    Max latency:  15.50 ns
+    Range:        3.81 ns
+    CoV:          7.11%
+
+  Memory Size: 2 MB
+    Mean latency: 16.87 ns
+    Std dev:      2.89 ns
+    Min latency:  14.47 ns
+    Max latency:  28.35 ns
+    Range:        13.88 ns
+    CoV:          17.11%
+
+  Memory Size: 4 MB
+    Mean latency: 22.25 ns
+    Std dev:      7.85 ns
+    Min latency:  15.96 ns
+    Max latency:  49.97 ns
+    Range:        34.01 ns
+    CoV:          35.26%
+
+  Memory Size: 8 MB
+    Mean latency: 46.17 ns
+    Std dev:      26.37 ns
+    Min latency:  16.00 ns
+    Max latency:  123.11 ns
+    Range:        107.11 ns
+    CoV:          57.12%
+
+  Memory Size: 16 MB
+    Mean latency: 92.40 ns
+    Std dev:      53.73 ns
+    Min latency:  16.65 ns
+    Max latency:  234.99 ns
+    Range:        218.34 ns
+    CoV:          58.15%
+
+  Memory Size: 32 MB
+    Mean latency: 151.07 ns
+    Std dev:      65.73 ns
+    Min latency:  29.12 ns
+    Max latency:  267.44 ns
+    Range:        238.32 ns
+    CoV:          43.51%
+
+  Memory Size: 64 MB
+    Mean latency: 172.52 ns
+    Std dev:      71.55 ns
+    Min latency:  60.63 ns
+    Max latency:  281.72 ns
+    Range:        221.09 ns
+    CoV:          41.48%
+
+  Memory Size: 128 MB
+    Mean latency: 173.13 ns
+    Std dev:      59.75 ns
+    Min latency:  76.17 ns
+    Max latency:  273.35 ns
+    Range:        197.18 ns
+    CoV:          34.51%
+
+  Memory Size: 256 MB
+    Mean latency: 181.13 ns
+    Std dev:      57.66 ns
+    Min latency:  83.80 ns
+    Max latency:  270.14 ns
+    Range:        186.34 ns
+    CoV:          31.83%
+
+  Memory Size: 512 MB
+    Mean latency: 192.52 ns
+    Std dev:      55.90 ns
+    Min latency:  87.50 ns
+    Max latency:  318.43 ns
+    Range:        230.93 ns
+    CoV:          29.04%
+
+104 ranks (interleaved_domains0,1,2,3,4,5,6,7_104ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.82 ns
+    Std dev:      1.31 ns
+    Min latency:  11.68 ns
+    Max latency:  17.98 ns
+    Range:        6.30 ns
+    CoV:          10.18%
+
+  Memory Size: 2 MB
+    Mean latency: 17.94 ns
+    Std dev:      3.95 ns
+    Min latency:  14.68 ns
+    Max latency:  30.71 ns
+    Range:        16.03 ns
+    CoV:          22.01%
+
+  Memory Size: 4 MB
+    Mean latency: 25.90 ns
+    Std dev:      11.00 ns
+    Min latency:  16.19 ns
+    Max latency:  60.48 ns
+    Range:        44.29 ns
+    CoV:          42.48%
+
+  Memory Size: 8 MB
+    Mean latency: 43.09 ns
+    Std dev:      34.37 ns
+    Min latency:  16.12 ns
+    Max latency:  154.39 ns
+    Range:        138.27 ns
+    CoV:          79.77%
+
+  Memory Size: 16 MB
+    Mean latency: 96.04 ns
+    Std dev:      56.06 ns
+    Min latency:  17.28 ns
+    Max latency:  219.43 ns
+    Range:        202.15 ns
+    CoV:          58.37%
+
+  Memory Size: 32 MB
+    Mean latency: 166.52 ns
+    Std dev:      61.27 ns
+    Min latency:  60.99 ns
+    Max latency:  259.78 ns
+    Range:        198.79 ns
+    CoV:          36.80%
+
+  Memory Size: 64 MB
+    Mean latency: 181.74 ns
+    Std dev:      57.93 ns
+    Min latency:  77.35 ns
+    Max latency:  269.16 ns
+    Range:        191.81 ns
+    CoV:          31.88%
+
+  Memory Size: 128 MB
+    Mean latency: 198.80 ns
+    Std dev:      67.65 ns
+    Min latency:  86.97 ns
+    Max latency:  355.16 ns
+    Range:        268.19 ns
+    CoV:          34.03%
+
+  Memory Size: 256 MB
+    Mean latency: 203.93 ns
+    Std dev:      69.79 ns
+    Min latency:  90.36 ns
+    Max latency:  370.11 ns
+    Range:        279.75 ns
+    CoV:          34.22%
+
+  Memory Size: 512 MB
+    Mean latency: 213.68 ns
+    Std dev:      71.03 ns
+    Min latency:  96.81 ns
+    Max latency:  398.87 ns
+    Range:        302.06 ns
+    CoV:          33.24%
+
+112 ranks (interleaved_domains0,1,2,3,4,5,6,7_112ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 13.43 ns
+    Std dev:      1.28 ns
+    Min latency:  12.16 ns
+    Max latency:  19.50 ns
+    Range:        7.34 ns
+    CoV:          9.53%
+
+  Memory Size: 2 MB
+    Mean latency: 18.00 ns
+    Std dev:      3.62 ns
+    Min latency:  15.11 ns
+    Max latency:  33.58 ns
+    Range:        18.47 ns
+    CoV:          20.13%
+
+  Memory Size: 4 MB
+    Mean latency: 25.52 ns
+    Std dev:      10.63 ns
+    Min latency:  16.67 ns
+    Max latency:  57.08 ns
+    Range:        40.41 ns
+    CoV:          41.66%
+
+  Memory Size: 8 MB
+    Mean latency: 54.49 ns
+    Std dev:      36.36 ns
+    Min latency:  16.28 ns
+    Max latency:  158.82 ns
+    Range:        142.54 ns
+    CoV:          66.73%
+
+  Memory Size: 16 MB
+    Mean latency: 125.10 ns
+    Std dev:      66.73 ns
+    Min latency:  17.83 ns
+    Max latency:  283.95 ns
+    Range:        266.12 ns
+    CoV:          53.34%
+
+  Memory Size: 32 MB
+    Mean latency: 159.52 ns
+    Std dev:      61.87 ns
+    Min latency:  57.51 ns
+    Max latency:  265.10 ns
+    Range:        207.59 ns
+    CoV:          38.79%
+
+  Memory Size: 64 MB
+    Mean latency: 180.90 ns
+    Std dev:      68.41 ns
+    Min latency:  79.85 ns
+    Max latency:  291.72 ns
+    Range:        211.87 ns
+    CoV:          37.81%
+
+  Memory Size: 128 MB
+    Mean latency: 176.41 ns
+    Std dev:      54.43 ns
+    Min latency:  90.01 ns
+    Max latency:  271.72 ns
+    Range:        181.71 ns
+    CoV:          30.85%
+
+  Memory Size: 256 MB
+    Mean latency: 179.51 ns
+    Std dev:      52.93 ns
+    Min latency:  94.65 ns
+    Max latency:  271.50 ns
+    Range:        176.85 ns
+    CoV:          29.49%
+
+  Memory Size: 512 MB
+    Mean latency: 201.66 ns
+    Std dev:      57.33 ns
+    Min latency:  94.70 ns
+    Max latency:  295.85 ns
+    Range:        201.15 ns
+    CoV:          28.43%
+
+120 ranks (interleaved_domains0,1,2,3,4,5,6,7_120ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 13.04 ns
+    Std dev:      1.36 ns
+    Min latency:  11.69 ns
+    Max latency:  17.10 ns
+    Range:        5.41 ns
+    CoV:          10.39%
+
+  Memory Size: 2 MB
+    Mean latency: 17.47 ns
+    Std dev:      2.66 ns
+    Min latency:  14.82 ns
+    Max latency:  31.22 ns
+    Range:        16.40 ns
+    CoV:          15.20%
+
+  Memory Size: 4 MB
+    Mean latency: 27.32 ns
+    Std dev:      10.19 ns
+    Min latency:  17.24 ns
+    Max latency:  58.59 ns
+    Range:        41.35 ns
+    CoV:          37.30%
+
+  Memory Size: 8 MB
+    Mean latency: 45.35 ns
+    Std dev:      30.17 ns
+    Min latency:  16.25 ns
+    Max latency:  155.12 ns
+    Range:        138.87 ns
+    CoV:          66.51%
+
+  Memory Size: 16 MB
+    Mean latency: 138.73 ns
+    Std dev:      64.60 ns
+    Min latency:  25.73 ns
+    Max latency:  265.78 ns
+    Range:        240.05 ns
+    CoV:          46.57%
+
+  Memory Size: 32 MB
+    Mean latency: 183.42 ns
+    Std dev:      66.42 ns
+    Min latency:  68.77 ns
+    Max latency:  316.09 ns
+    Range:        247.32 ns
+    CoV:          36.21%
+
+  Memory Size: 64 MB
+    Mean latency: 197.57 ns
+    Std dev:      66.29 ns
+    Min latency:  82.42 ns
+    Max latency:  349.79 ns
+    Range:        267.37 ns
+    CoV:          33.55%
+
+  Memory Size: 128 MB
+    Mean latency: 199.71 ns
+    Std dev:      65.14 ns
+    Min latency:  87.91 ns
+    Max latency:  388.25 ns
+    Range:        300.34 ns
+    CoV:          32.62%
+
+  Memory Size: 256 MB
+    Mean latency: 204.85 ns
+    Std dev:      63.03 ns
+    Min latency:  91.03 ns
+    Max latency:  380.82 ns
+    Range:        289.79 ns
+    CoV:          30.77%
+
+  Memory Size: 512 MB
+    Mean latency: 221.04 ns
+    Std dev:      66.17 ns
+    Min latency:  99.93 ns
+    Max latency:  398.13 ns
+    Range:        298.20 ns
+    CoV:          29.93%
+
+128 ranks (interleaved_domains0,1,2,3,4,5,6,7_128ranks_1-512MB.csv):
+  Memory Size: 1 MB
+    Mean latency: 12.78 ns
+    Std dev:      1.44 ns
+    Min latency:  11.75 ns
+    Max latency:  19.39 ns
+    Range:        7.64 ns
+    CoV:          11.27%
+
+  Memory Size: 2 MB
+    Mean latency: 18.52 ns
+    Std dev:      3.33 ns
+    Min latency:  15.41 ns
+    Max latency:  34.55 ns
+    Range:        19.14 ns
+    CoV:          18.01%
+
+  Memory Size: 4 MB
+    Mean latency: 27.62 ns
+    Std dev:      10.59 ns
+    Min latency:  15.95 ns
+    Max latency:  59.77 ns
+    Range:        43.82 ns
+    CoV:          38.36%
+
+  Memory Size: 8 MB
+    Mean latency: 79.92 ns
+    Std dev:      49.35 ns
+    Min latency:  16.11 ns
+    Max latency:  212.58 ns
+    Range:        196.47 ns
+    CoV:          61.74%
+
+  Memory Size: 16 MB
+    Mean latency: 137.36 ns
+    Std dev:      61.62 ns
+    Min latency:  32.60 ns
+    Max latency:  274.79 ns
+    Range:        242.19 ns
+    CoV:          44.86%
+
+  Memory Size: 32 MB
+    Mean latency: 156.71 ns
+    Std dev:      55.99 ns
+    Min latency:  65.29 ns
+    Max latency:  273.03 ns
+    Range:        207.74 ns
+    CoV:          35.73%
+
+  Memory Size: 64 MB
+    Mean latency: 184.86 ns
+    Std dev:      64.06 ns
+    Min latency:  79.31 ns
+    Max latency:  298.71 ns
+    Range:        219.40 ns
+    CoV:          34.65%
+
+  Memory Size: 128 MB
+    Mean latency: 183.11 ns
+    Std dev:      57.61 ns
+    Min latency:  90.62 ns
+    Max latency:  293.26 ns
+    Range:        202.64 ns
+    CoV:          31.47%
+
+  Memory Size: 256 MB
+    Mean latency: 187.33 ns
+    Std dev:      56.50 ns
+    Min latency:  93.31 ns
+    Max latency:  299.62 ns
+    Range:        206.31 ns
+    CoV:          30.16%
+
+  Memory Size: 512 MB
+    Mean latency: 208.92 ns
+    Std dev:      53.24 ns
+    Min latency:  89.18 ns
+    Max latency:  285.45 ns
+    Range:        196.27 ns
+    CoV:          25.48%

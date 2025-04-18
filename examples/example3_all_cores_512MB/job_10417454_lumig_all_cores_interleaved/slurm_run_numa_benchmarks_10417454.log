@@ -1,0 +1,2246 @@
+Starting benchmarking process at Fri 18 Apr 2025 01:22:35 PM EEST
+
+================================================================================
+=                  NUMA-Aware Benchmark Configuration Tool  v 1.0              =
+================================================================================
+
+# Architecture Configuration 
+System: LUMI
+Partition: PART-G
+CCDs per NUMA domain: 2
+Detected 4 NUMA nodes
+Found SKIP_CORES directive: 24 16 0 8 56 48 40 32
+--------------------------------------------------------------------------------
+Job started on Fri 18 Apr 2025 01:22:35 PM EEST in directory: /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/examples/FINAL/example3_all_cores_512MB/results_scaling/job_10417454_lumig_all_cores_interleaved
+[ OK ] Created symlink: wrapper_numa.sh -> /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/scripts/orchestrator/wrapper_numa.sh
+[ OK ] Created symlink: numa_mem_bench -> /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/numa_mem_bench
+Created 2 symbolic links to required files
+
+================================================================================
+[ 4 RANKS ] Benchmark Configuration
+[ 4 RANKS ] - Allocation Type  : interleaved
+[ 4 RANKS ] - Domains          : 0,1,2,3
+[ 4 RANKS ] - Ranks per Domain : 1
+[ 4 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 4 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 4 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 4 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 4 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 4 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 4 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 4 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 4 RANKS ] NUMA binding: 0,1,2,3
+[ 4 RANKS ] CPU binding : 1,17,33,49
+[ 4 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 4 --cpu-bind=map_cpu:1,17,33,49 --hint=nomultithread wrapper_numa.sh --numa=0,1,2,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_4ranks_512MB.csv
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_4ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 3
+[Rank 3] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_4ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 1
+[Rank 1] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_4ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 2
+[Rank 2] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_4ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 4
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_4ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x422a40  |   0   | 101.12 |
+|  001  | 17      |   1  | 0x4223e0  |   1   | 100.52 |
+|  002  | 33      |   2  | 0x422420  |   2   | 98.99  |
+|  003  | 49      |   3  | 0x422460  |   3   | 100.78 |
+ =====================================================
+
+[3] ===================== NUMA Statistics =====================
+[3] Last Process: Rank 3
+[3] Process ID: 73666
+[3] Allocated Memory Size: 512 MB
+[3] Running numastat...
+[3] 
+[3] Per-node process memory usage (in MBs) for PID 73666 (numa_mem_bench)
+[3]                            Node 0          Node 1          Node 2          Node 3           Total
+[3]                   --------------- --------------- --------------- --------------- ---------------
+[3] Huge                         0.00            0.00            0.00            0.00            0.00
+[3] Heap                         0.00            0.00            0.00          514.10          514.10
+[3] Stack                        0.00            0.00            0.00            0.02            0.02
+[3] Private                      7.87            2.92            1.16            4.23           16.18
+[3] ----------------  --------------- --------------- --------------- --------------- ---------------
+[3] Total                        7.87            2.92            1.16          518.35          530.30
+[3]==========================================================
+
+[ 4 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 8 RANKS ] Benchmark Configuration
+[ 8 RANKS ] - Allocation Type  : interleaved
+[ 8 RANKS ] - Domains          : 0,1,2,3
+[ 8 RANKS ] - Ranks per Domain : 2
+[ 8 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 8 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 8 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 8 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 8 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 8 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 8 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 8 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 8 RANKS ] NUMA binding: 0,0,1,1,2,2,3,3
+[ 8 RANKS ] CPU binding : 1,9,17,25,33,41,49,57
+[ 8 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 8 --cpu-bind=map_cpu:1,9,17,25,33,41,49,57 --hint=nomultithread wrapper_numa.sh --numa=0,0,1,1,2,2,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_8ranks_512MB.csv
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 1
+[Rank 3] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 3
+[Rank 6] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 1
+[Rank 2] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 3
+[Rank 7] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 2
+[Rank 4] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 2
+[Rank 5] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_8ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 8
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_8ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x42a8c0  |   0   | 102.59 |
+|  001  | 9       |   0  | 0x42a220  |   0   | 110.39 |
+|  002  | 17      |   1  | 0x42a260  |   1   | 134.07 |
+|  003  | 25      |   1  | 0x42a260  |   1   | 101.24 |
+|  004  | 33      |   2  | 0x42a2a0  |   2   | 133.30 |
+|  005  | 41      |   2  | 0x42a2a0  |   2   | 101.22 |
+|  006  | 49      |   3  | 0x42a2e0  |   3   | 119.37 |
+|  007  | 57      |   3  | 0x42a2e0  |   3   | 102.55 |
+ =====================================================
+
+[7] ===================== NUMA Statistics =====================
+[7] Last Process: Rank 7
+[7] Process ID: 73942
+[7] Allocated Memory Size: 512 MB
+[7] Running numastat...
+[7] 
+[7] Per-node process memory usage (in MBs) for PID 73942 (numa_mem_bench)
+[7]                            Node 0          Node 1          Node 2          Node 3           Total
+[7]                   --------------- --------------- --------------- --------------- ---------------
+[7] Huge                         0.00            0.00            0.00            0.00            0.00
+[7] Heap                         0.00            0.00            0.00          514.13          514.13
+[7] Stack                        0.00            0.00            0.00            0.02            0.02
+[7] Private                      8.06            2.88            1.24            4.22           16.40
+[7] ----------------  --------------- --------------- --------------- --------------- ---------------
+[7] Total                        8.06            2.88            1.24          518.37          530.55
+[7]==========================================================
+
+[ 8 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 12 RANKS ] Benchmark Configuration
+[ 12 RANKS ] - Allocation Type  : interleaved
+[ 12 RANKS ] - Domains          : 0,1,2,3
+[ 12 RANKS ] - Ranks per Domain : 3
+[ 12 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 12 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 12 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 12 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 12 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 12 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 12 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 12 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 12 RANKS ] NUMA binding: 0,0,0,1,1,1,2,2,2,3,3,3
+[ 12 RANKS ] CPU binding : 1,9,2,17,25,18,33,41,34,49,57,50
+[ 12 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 12 --cpu-bind=map_cpu:1,9,2,17,25,18,33,41,34,49,57,50 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,1,1,1,2,2,2,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_12ranks_512MB.csv
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 2
+[Rank 6] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 2
+[Rank 8] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 2
+[Rank 7] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 3
+[Rank 11] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 1
+[Rank 3] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 1
+[Rank 4] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 1
+[Rank 5] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 3
+[Rank 9] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 3
+[Rank 10] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_12ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 12
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_12ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x432b40  |   0   | 145.39 |
+|  001  | 9       |   0  | 0x4324a0  |   0   | 183.96 |
+|  002  | 2       |   0  | 0x4324a0  |   0   | 108.46 |
+|  003  | 17      |   1  | 0x4324e0  |   1   | 144.38 |
+|  004  | 25      |   1  | 0x4324e0  |   1   | 180.43 |
+|  005  | 18      |   1  | 0x4324e0  |   1   | 108.54 |
+|  006  | 33      |   2  | 0x432520  |   2   | 116.73 |
+|  007  | 41      |   2  | 0x432520  |   2   | 182.50 |
+|  008  | 34      |   2  | 0x432520  |   2   | 106.94 |
+|  009  | 49      |   3  | 0x432560  |   3   | 143.76 |
+|  010  | 57      |   3  | 0x432560  |   3   | 182.86 |
+|  011  | 50      |   3  | 0x432560  |   3   | 105.47 |
+ =====================================================
+
+[11] ===================== NUMA Statistics =====================
+[11] Last Process: Rank 11
+[11] Process ID: 74329
+[11] Allocated Memory Size: 512 MB
+[11] Running numastat...
+[11] 
+[11] Per-node process memory usage (in MBs) for PID 74329 (numa_mem_bench)
+[11]                            Node 0          Node 1          Node 2          Node 3           Total
+[11]                   --------------- --------------- --------------- --------------- ---------------
+[11] Huge                         0.00            0.00            0.00            0.00            0.00
+[11] Heap                         0.00            0.00            0.00          514.17          514.17
+[11] Stack                        0.00            0.00            0.00            0.02            0.02
+[11] Private                      7.91            2.83            1.23            4.21           16.19
+[11] ----------------  --------------- --------------- --------------- --------------- ---------------
+[11] Total                        7.91            2.83            1.23          518.40          530.38
+[11]==========================================================
+
+[ 12 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 16 RANKS ] Benchmark Configuration
+[ 16 RANKS ] - Allocation Type  : interleaved
+[ 16 RANKS ] - Domains          : 0,1,2,3
+[ 16 RANKS ] - Ranks per Domain : 4
+[ 16 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 16 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 16 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 16 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 16 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 16 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 16 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 16 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 16 RANKS ] NUMA binding: 0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3
+[ 16 RANKS ] CPU binding : 1,9,2,10,17,25,18,26,33,41,34,42,49,57,50,58
+[ 16 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 16 --cpu-bind=map_cpu:1,9,2,10,17,25,18,26,33,41,34,42,49,57,50,58 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_16ranks_512MB.csv
+[Rank 13] Binding to NUMA domain 3
+[Rank 13] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 3
+[Rank 12] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 1
+[Rank 5] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 1
+[Rank 7] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 3
+[Rank 14] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 2
+[Rank 9] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 3
+[Rank 15] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 2
+[Rank 11] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 2
+[Rank 10] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 2
+[Rank 8] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 1
+[Rank 4] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 1
+[Rank 6] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_16ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 16
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_16ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x43a4a0  |   0   | 164.59 |
+|  001  | 9       |   0  | 0x439df0  |   0   | 219.55 |
+|  002  | 2       |   0  | 0x439df0  |   0   | 114.43 |
+|  003  | 10      |   0  | 0x439df0  |   0   | 130.63 |
+|  004  | 17      |   1  | 0x439e30  |   1   | 184.23 |
+|  005  | 25      |   1  | 0x439e30  |   1   | 202.81 |
+|  006  | 18      |   1  | 0x439e30  |   1   | 120.17 |
+|  007  | 26      |   1  | 0x439e30  |   1   | 111.78 |
+|  008  | 33      |   2  | 0x439e70  |   2   | 196.76 |
+|  009  | 41      |   2  | 0x439e70  |   2   | 158.04 |
+|  010  | 34      |   2  | 0x439e70  |   2   | 135.32 |
+|  011  | 42      |   2  | 0x439e70  |   2   | 111.79 |
+|  012  | 49      |   3  | 0x439eb0  |   3   | 222.11 |
+|  013  | 57      |   3  | 0x439eb0  |   3   | 119.09 |
+|  014  | 50      |   3  | 0x439eb0  |   3   | 115.48 |
+|  015  | 58      |   3  | 0x439eb0  |   3   | 151.39 |
+ =====================================================
+
+[15] ===================== NUMA Statistics =====================
+[15] Last Process: Rank 15
+[15] Process ID: 74808
+[15] Allocated Memory Size: 512 MB
+[15] Running numastat...
+[15] 
+[15] Per-node process memory usage (in MBs) for PID 74808 (numa_mem_bench)
+[15]                            Node 0          Node 1          Node 2          Node 3           Total
+[15]                   --------------- --------------- --------------- --------------- ---------------
+[15] Huge                         0.00            0.00            0.00            0.00            0.00
+[15] Heap                         0.00            0.00            0.00          514.20          514.20
+[15] Stack                        0.00            0.00            0.00            0.02            0.02
+[15] Private                      7.88            2.95            1.14            4.34           16.31
+[15] ----------------  --------------- --------------- --------------- --------------- ---------------
+[15] Total                        7.88            2.95            1.14          518.56          530.53
+[15]==========================================================
+
+[ 16 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 20 RANKS ] Benchmark Configuration
+[ 20 RANKS ] - Allocation Type  : interleaved
+[ 20 RANKS ] - Domains          : 0,1,2,3
+[ 20 RANKS ] - Ranks per Domain : 5
+[ 20 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 20 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 20 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 20 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 20 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 20 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 20 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 20 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 20 RANKS ] NUMA binding: 0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3
+[ 20 RANKS ] CPU binding : 1,9,2,10,3,17,25,18,26,19,33,41,34,42,35,49,57,50,58,51
+[ 20 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 20 --cpu-bind=map_cpu:1,9,2,10,3,17,25,18,26,19,33,41,34,42,35,49,57,50,58,51 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_20ranks_512MB.csv
+[Rank 15] Binding to NUMA domain 3
+[Rank 15] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 3
+[Rank 17] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 3
+[Rank 19] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 3
+[Rank 16] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 3
+[Rank 18] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 1
+[Rank 5] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 1
+[Rank 7] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 1
+[Rank 9] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 1
+[Rank 8] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 2
+[Rank 13] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 1
+[Rank 6] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 2
+[Rank 10] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 2
+[Rank 11] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 2
+[Rank 12] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 2
+[Rank 14] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_20ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 20
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_20ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x4424d0  |   0   | 211.62 |
+|  001  | 9       |   0  | 0x441e30  |   0   | 241.09 |
+|  002  | 2       |   0  | 0x441e30  |   0   | 112.72 |
+|  003  | 10      |   0  | 0x441e30  |   0   | 204.45 |
+|  004  | 3       |   0  | 0x441e30  |   0   | 130.56 |
+|  005  | 17      |   1  | 0x441e70  |   1   | 194.83 |
+|  006  | 25      |   1  | 0x441e70  |   1   | 239.08 |
+|  007  | 18      |   1  | 0x441e70  |   1   | 126.33 |
+|  008  | 26      |   1  | 0x441e70  |   1   | 202.87 |
+|  009  | 19      |   1  | 0x441e70  |   1   | 112.87 |
+|  010  | 33      |   2  | 0x441eb0  |   2   | 172.57 |
+|  011  | 41      |   2  | 0x441eb0  |   2   | 238.47 |
+|  012  | 34      |   2  | 0x441eb0  |   2   | 111.62 |
+|  013  | 42      |   2  | 0x441eb0  |   2   | 223.80 |
+|  014  | 35      |   2  | 0x441eb0  |   2   | 142.26 |
+|  015  | 49      |   3  | 0x441ef0  |   3   | 152.39 |
+|  016  | 57      |   3  | 0x441ef0  |   3   | 241.38 |
+|  017  | 50      |   3  | 0x441ef0  |   3   | 112.83 |
+|  018  | 58      |   3  | 0x441ef0  |   3   | 223.19 |
+|  019  | 51      |   3  | 0x441ef0  |   3   | 151.06 |
+ =====================================================
+
+[19] ===================== NUMA Statistics =====================
+[19] Last Process: Rank 19
+[19] Process ID: 75332
+[19] Allocated Memory Size: 512 MB
+[19] Running numastat...
+[19] 
+[19] Per-node process memory usage (in MBs) for PID 75332 (numa_mem_bench)
+[19]                            Node 0          Node 1          Node 2          Node 3           Total
+[19]                   --------------- --------------- --------------- --------------- ---------------
+[19] Huge                         0.00            0.00            0.00            0.00            0.00
+[19] Heap                         0.00            0.00            0.00          514.23          514.23
+[19] Stack                        0.00            0.00            0.00            0.02            0.02
+[19] Private                      7.86            2.72            1.06            4.14           15.79
+[19] ----------------  --------------- --------------- --------------- --------------- ---------------
+[19] Total                        7.86            2.72            1.06          518.39          530.04
+[19]==========================================================
+
+[ 20 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 24 RANKS ] Benchmark Configuration
+[ 24 RANKS ] - Allocation Type  : interleaved
+[ 24 RANKS ] - Domains          : 0,1,2,3
+[ 24 RANKS ] - Ranks per Domain : 6
+[ 24 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 24 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 24 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 24 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 24 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 24 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 24 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 24 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 24 RANKS ] NUMA binding: 0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3
+[ 24 RANKS ] CPU binding : 1,9,2,10,3,11,17,25,18,26,19,27,33,41,34,42,35,43,49,57,50,58,51,59
+[ 24 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 24 --cpu-bind=map_cpu:1,9,2,10,3,11,17,25,18,26,19,27,33,41,34,42,35,43,49,57,50,58,51,59 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_24ranks_512MB.csv
+[Rank 18] Binding to NUMA domain 3
+[Rank 18] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 3
+[Rank 20] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 3
+[Rank 22] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 3
+[Rank 19] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 3
+[Rank 21] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 3
+[Rank 23] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 1
+[Rank 8] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 1
+[Rank 6] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 1
+[Rank 10] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 2
+[Rank 13] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 2
+[Rank 17] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 1
+[Rank 7] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 2
+[Rank 12] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 2
+[Rank 16] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 2
+[Rank 15] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 1
+[Rank 9] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 1
+[Rank 11] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 2
+[Rank 14] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_24ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 24
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_24ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x44a380  |   0   | 160.45 |
+|  001  | 9       |   0  | 0x449cd0  |   0   | 270.79 |
+|  002  | 2       |   0  | 0x449cd0  |   0   | 202.61 |
+|  003  | 10      |   0  | 0x449cd0  |   0   | 147.18 |
+|  004  | 3       |   0  | 0x449cd0  |   0   | 122.81 |
+|  005  | 11      |   0  | 0x449cd0  |   0   | 132.20 |
+|  006  | 17      |   1  | 0x449d10  |   1   | 259.91 |
+|  007  | 25      |   1  | 0x449d10  |   1   | 128.98 |
+|  008  | 18      |   1  | 0x449d10  |   1   | 119.38 |
+|  009  | 26      |   1  | 0x449d10  |   1   | 144.96 |
+|  010  | 19      |   1  | 0x449d10  |   1   | 173.67 |
+|  011  | 27      |   1  | 0x449d10  |   1   | 117.92 |
+|  012  | 33      |   2  | 0x449d50  |   2   | 268.32 |
+|  013  | 41      |   2  | 0x449d50  |   2   | 171.33 |
+|  014  | 34      |   2  | 0x449d50  |   2   | 228.92 |
+|  015  | 42      |   2  | 0x449d50  |   2   | 115.26 |
+|  016  | 35      |   2  | 0x449d50  |   2   | 172.81 |
+|  017  | 43      |   2  | 0x449d50  |   2   | 128.64 |
+|  018  | 49      |   3  | 0x449d90  |   3   | 239.76 |
+|  019  | 57      |   3  | 0x449d90  |   3   | 233.16 |
+|  020  | 50      |   3  | 0x449d90  |   3   | 155.99 |
+|  021  | 58      |   3  | 0x449d90  |   3   | 120.30 |
+|  022  | 51      |   3  | 0x449d90  |   3   | 124.52 |
+|  023  | 59      |   3  | 0x449d90  |   3   | 199.42 |
+ =====================================================
+
+[23] ===================== NUMA Statistics =====================
+[23] Last Process: Rank 23
+[23] Process ID: 76000
+[23] Allocated Memory Size: 512 MB
+[23] Running numastat...
+[23] 
+[23] Per-node process memory usage (in MBs) for PID 76000 (numa_mem_bench)
+[23]                            Node 0          Node 1          Node 2          Node 3           Total
+[23]                   --------------- --------------- --------------- --------------- ---------------
+[23] Huge                         0.00            0.00            0.00            0.00            0.00
+[23] Heap                         0.00            0.00            0.00          514.26          514.26
+[23] Stack                        0.00            0.00            0.00            0.02            0.02
+[23] Private                      7.96            2.92            1.29            4.30           16.46
+[23] ----------------  --------------- --------------- --------------- --------------- ---------------
+[23] Total                        7.96            2.92            1.29          518.57          530.74
+[23]==========================================================
+
+[ 24 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 28 RANKS ] Benchmark Configuration
+[ 28 RANKS ] - Allocation Type  : interleaved
+[ 28 RANKS ] - Domains          : 0,1,2,3
+[ 28 RANKS ] - Ranks per Domain : 7
+[ 28 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 28 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 28 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 28 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 28 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 28 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 28 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 28 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 28 RANKS ] NUMA binding: 0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3
+[ 28 RANKS ] CPU binding : 1,9,2,10,3,11,4,17,25,18,26,19,27,20,33,41,34,42,35,43,36,49,57,50,58,51,59,52
+[ 28 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 28 --cpu-bind=map_cpu:1,9,2,10,3,11,4,17,25,18,26,19,27,20,33,41,34,42,35,43,36,49,57,50,58,51,59,52 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_28ranks_512MB.csv
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 3
+[Rank 25] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 3
+[Rank 23] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 27] Binding to NUMA domain 3
+[Rank 27] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 3
+[Rank 21] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 2
+[Rank 19] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 1
+[Rank 13] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 2
+[Rank 15] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 2
+[Rank 18] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 3
+[Rank 22] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 3
+[Rank 26] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 2
+[Rank 16] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 3
+[Rank 24] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 2
+[Rank 17] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 1
+[Rank 12] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 1
+[Rank 7] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 1
+[Rank 8] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 1
+[Rank 9] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 1
+[Rank 11] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 1
+[Rank 10] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 2
+[Rank 14] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 2
+[Rank 20] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_28ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 28
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_28ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x452200  |   0   | 220.77 |
+|  001  | 9       |   0  | 0x451b60  |   0   | 247.47 |
+|  002  | 2       |   0  | 0x451b60  |   0   | 136.26 |
+|  003  | 10      |   0  | 0x451b60  |   0   | 276.99 |
+|  004  | 3       |   0  | 0x451b60  |   0   | 121.62 |
+|  005  | 11      |   0  | 0x451b60  |   0   | 267.64 |
+|  006  | 4       |   0  | 0x451b60  |   0   | 119.01 |
+|  007  | 17      |   1  | 0x451ba0  |   1   | 182.45 |
+|  008  | 25      |   1  | 0x451ba0  |   1   | 285.95 |
+|  009  | 18      |   1  | 0x451ba0  |   1   | 140.31 |
+|  010  | 26      |   1  | 0x451ba0  |   1   | 279.19 |
+|  011  | 19      |   1  | 0x451ba0  |   1   | 153.95 |
+|  012  | 27      |   1  | 0x451ba0  |   1   | 241.71 |
+|  013  | 20      |   1  | 0x451ba0  |   1   | 115.68 |
+|  014  | 33      |   2  | 0x451be0  |   2   | 156.88 |
+|  015  | 41      |   2  | 0x451be0  |   2   | 269.17 |
+|  016  | 34      |   2  | 0x451be0  |   2   | 147.90 |
+|  017  | 42      |   2  | 0x451be0  |   2   | 241.40 |
+|  018  | 35      |   2  | 0x451be0  |   2   | 153.21 |
+|  019  | 43      |   2  | 0x451be0  |   2   | 277.09 |
+|  020  | 36      |   2  | 0x451be0  |   2   | 115.83 |
+|  021  | 49      |   3  | 0x451c20  |   3   | 222.42 |
+|  022  | 57      |   3  | 0x451c20  |   3   | 263.74 |
+|  023  | 50      |   3  | 0x451c20  |   3   | 119.03 |
+|  024  | 58      |   3  | 0x451c20  |   3   | 273.16 |
+|  025  | 51      |   3  | 0x451c20  |   3   | 125.21 |
+|  026  | 59      |   3  | 0x451c20  |   3   | 249.38 |
+|  027  | 52      |   3  | 0x451c20  |   3   | 119.03 |
+ =====================================================
+
+[27] ===================== NUMA Statistics =====================
+[27] Last Process: Rank 27
+[27] Process ID: 76734
+[27] Allocated Memory Size: 512 MB
+[27] Running numastat...
+[27] 
+[27] Per-node process memory usage (in MBs) for PID 76734 (numa_mem_bench)
+[27]                            Node 0          Node 1          Node 2          Node 3           Total
+[27]                   --------------- --------------- --------------- --------------- ---------------
+[27] Huge                         0.00            0.00            0.00            0.00            0.00
+[27] Heap                         0.00            0.00            0.00          514.29          514.29
+[27] Stack                        0.00            0.00            0.00            0.02            0.02
+[27] Private                      7.70            2.95            1.11            4.35           16.10
+[27] ----------------  --------------- --------------- --------------- --------------- ---------------
+[27] Total                        7.70            2.95            1.11          518.66          530.41
+[27]==========================================================
+
+[ 28 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 32 RANKS ] Benchmark Configuration
+[ 32 RANKS ] - Allocation Type  : interleaved
+[ 32 RANKS ] - Domains          : 0,1,2,3
+[ 32 RANKS ] - Ranks per Domain : 8
+[ 32 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 32 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 32 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 32 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 32 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 32 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 32 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 32 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 32 RANKS ] NUMA binding: 0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3
+[ 32 RANKS ] CPU binding : 1,9,2,10,3,11,4,12,17,25,18,26,19,27,20,28,33,41,34,42,35,43,36,44,49,57,50,58,51,59,52,60
+[ 32 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 32 --cpu-bind=map_cpu:1,9,2,10,3,11,4,12,17,25,18,26,19,27,20,28,33,41,34,42,35,43,36,44,49,57,50,58,51,59,52,60 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_32ranks_512MB.csv
+[Rank 14] Binding to NUMA domain 1
+[Rank 14] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 1
+[Rank 10] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 28] Binding to NUMA domain 3
+[Rank 28] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 30] Binding to NUMA domain 3
+[Rank 30] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 3
+[Rank 26] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 1
+[Rank 12] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 1
+[Rank 8] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 3
+[Rank 24] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 3
+[Rank 25] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 29] Binding to NUMA domain 3
+[Rank 29] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 31] Binding to NUMA domain 3
+[Rank 31] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 27] Binding to NUMA domain 3
+[Rank 27] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 0
+[Rank 7] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 2
+[Rank 19] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 2
+[Rank 21] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 2
+[Rank 23] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 1
+[Rank 9] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 1
+[Rank 15] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 2
+[Rank 16] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 2
+[Rank 17] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 2
+[Rank 20] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 2
+[Rank 18] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 2
+[Rank 22] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 1
+[Rank 13] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 1
+[Rank 11] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_32ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 32
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_32ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x45a0b0  |   0   | 139.21 |
+|  001  | 9       |   0  | 0x459a10  |   0   | 293.16 |
+|  002  | 2       |   0  | 0x459a10  |   0   | 139.24 |
+|  003  | 10      |   0  | 0x459a10  |   0   | 217.42 |
+|  004  | 3       |   0  | 0x459a10  |   0   | 267.04 |
+|  005  | 11      |   0  | 0x459a10  |   0   | 242.03 |
+|  006  | 4       |   0  | 0x459a10  |   0   | 125.30 |
+|  007  | 12      |   0  | 0x459a10  |   0   | 176.58 |
+|  008  | 17      |   1  | 0x459a50  |   1   | 240.68 |
+|  009  | 25      |   1  | 0x459a50  |   1   | 253.20 |
+|  010  | 18      |   1  | 0x459a50  |   1   | 292.03 |
+|  011  | 26      |   1  | 0x459a50  |   1   | 204.09 |
+|  012  | 19      |   1  | 0x459a50  |   1   | 175.60 |
+|  013  | 27      |   1  | 0x459a50  |   1   | 293.12 |
+|  014  | 20      |   1  | 0x459a50  |   1   | 142.55 |
+|  015  | 28      |   1  | 0x459a50  |   1   | 127.36 |
+|  016  | 33      |   2  | 0x459a90  |   2   | 283.67 |
+|  017  | 41      |   2  | 0x459a90  |   2   | 252.08 |
+|  018  | 34      |   2  | 0x459a90  |   2   | 205.24 |
+|  019  | 42      |   2  | 0x459a90  |   2   | 119.00 |
+|  020  | 35      |   2  | 0x459a90  |   2   | 295.17 |
+|  021  | 43      |   2  | 0x459a90  |   2   | 172.94 |
+|  022  | 36      |   2  | 0x459a90  |   2   | 165.26 |
+|  023  | 44      |   2  | 0x459a90  |   2   | 159.40 |
+|  024  | 49      |   3  | 0x459ad0  |   3   | 288.56 |
+|  025  | 57      |   3  | 0x459ad0  |   3   | 216.21 |
+|  026  | 50      |   3  | 0x459ad0  |   3   | 135.23 |
+|  027  | 58      |   3  | 0x459ad0  |   3   | 283.35 |
+|  028  | 51      |   3  | 0x459ad0  |   3   | 208.60 |
+|  029  | 59      |   3  | 0x459ad0  |   3   | 137.41 |
+|  030  | 52      |   3  | 0x459ad0  |   3   | 128.75 |
+|  031  | 60      |   3  | 0x459ad0  |   3   | 133.40 |
+ =====================================================
+
+[31] ===================== NUMA Statistics =====================
+[31] Last Process: Rank 31
+[31] Process ID: 77589
+[31] Allocated Memory Size: 512 MB
+[31] Running numastat...
+[31] 
+[31] Per-node process memory usage (in MBs) for PID 77589 (numa_mem_bench)
+[31]                            Node 0          Node 1          Node 2          Node 3           Total
+[31]                   --------------- --------------- --------------- --------------- ---------------
+[31] Huge                         0.00            0.00            0.00            0.00            0.00
+[31] Heap                         0.00            0.00            0.00          514.32          514.32
+[31] Stack                        0.00            0.00            0.00            0.02            0.02
+[31] Private                      7.93            2.88            1.18            4.22           16.21
+[31] ----------------  --------------- --------------- --------------- --------------- ---------------
+[31] Total                        7.93            2.88            1.18          518.55          530.54
+[31]==========================================================
+
+[ 32 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 36 RANKS ] Benchmark Configuration
+[ 36 RANKS ] - Allocation Type  : interleaved
+[ 36 RANKS ] - Domains          : 0,1,2,3
+[ 36 RANKS ] - Ranks per Domain : 9
+[ 36 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 36 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 36 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 36 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 36 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 36 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 36 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 36 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 36 RANKS ] NUMA binding: 0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3
+[ 36 RANKS ] CPU binding : 1,9,2,10,3,11,4,12,5,17,25,18,26,19,27,20,28,21,33,41,34,42,35,43,36,44,37,49,57,50,58,51,59,52,60,53
+[ 36 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 36 --cpu-bind=map_cpu:1,9,2,10,3,11,4,12,5,17,25,18,26,19,27,20,28,21,33,41,34,42,35,43,36,44,37,49,57,50,58,51,59,52,60,53 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_36ranks_512MB.csv
+[Rank 27] Binding to NUMA domain 3
+[Rank 27] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 31] Binding to NUMA domain 3
+[Rank 31] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 35] Binding to NUMA domain 3
+[Rank 35] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 33] Binding to NUMA domain 3
+[Rank 33] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 29] Binding to NUMA domain 3
+[Rank 29] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 28] Binding to NUMA domain 3
+[Rank 28] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 2
+[Rank 20] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 32] Binding to NUMA domain 3
+[Rank 32] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 34] Binding to NUMA domain 3
+[Rank 34] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 30] Binding to NUMA domain 3
+[Rank 30] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 0
+[Rank 8] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 2
+[Rank 26] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 0
+[Rank 7] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 1
+[Rank 16] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 2
+[Rank 19] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 2
+[Rank 21] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 2
+[Rank 18] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 2
+[Rank 22] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 1
+[Rank 9] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 1
+[Rank 11] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 1
+[Rank 15] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 2
+[Rank 23] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 2
+[Rank 25] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 1
+[Rank 10] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 1
+[Rank 12] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 1
+[Rank 14] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 2
+[Rank 24] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 1
+[Rank 13] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 1
+[Rank 17] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_36ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 36
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_36ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x4621a0  |   0   | 269.48 |
+|  001  | 9       |   0  | 0x461b00  |   0   | 311.35 |
+|  002  | 2       |   0  | 0x461b00  |   0   | 172.12 |
+|  003  | 10      |   0  | 0x461b00  |   0   | 306.07 |
+|  004  | 3       |   0  | 0x461b00  |   0   | 258.66 |
+|  005  | 11      |   0  | 0x461b00  |   0   | 295.95 |
+|  006  | 4       |   0  | 0x461b00  |   0   | 120.23 |
+|  007  | 12      |   0  | 0x461b00  |   0   | 285.15 |
+|  008  | 5       |   0  | 0x461b00  |   0   | 136.07 |
+|  009  | 17      |   1  | 0x461b40  |   1   | 273.12 |
+|  010  | 25      |   1  | 0x461b40  |   1   | 295.32 |
+|  011  | 18      |   1  | 0x461b40  |   1   | 247.69 |
+|  012  | 26      |   1  | 0x461b40  |   1   | 296.98 |
+|  013  | 19      |   1  | 0x461b40  |   1   | 171.52 |
+|  014  | 27      |   1  | 0x461b40  |   1   | 268.83 |
+|  015  | 20      |   1  | 0x461b40  |   1   | 116.63 |
+|  016  | 28      |   1  | 0x461b40  |   1   | 307.38 |
+|  017  | 21      |   1  | 0x461b40  |   1   | 136.68 |
+|  018  | 33      |   2  | 0x461b80  |   2   | 196.09 |
+|  019  | 41      |   2  | 0x461b80  |   2   | 333.74 |
+|  020  | 34      |   2  | 0x461b80  |   2   | 205.77 |
+|  021  | 42      |   2  | 0x461b80  |   2   | 340.29 |
+|  022  | 35      |   2  | 0x461b80  |   2   | 234.92 |
+|  023  | 43      |   2  | 0x461b80  |   2   | 267.14 |
+|  024  | 36      |   2  | 0x461b80  |   2   | 131.85 |
+|  025  | 44      |   2  | 0x461b80  |   2   | 309.68 |
+|  026  | 37      |   2  | 0x461b80  |   2   | 118.95 |
+|  027  | 49      |   3  | 0x461bc0  |   3   | 271.16 |
+|  028  | 57      |   3  | 0x461bc0  |   3   | 289.00 |
+|  029  | 50      |   3  | 0x461bc0  |   3   | 172.13 |
+|  030  | 58      |   3  | 0x461bc0  |   3   | 307.60 |
+|  031  | 51      |   3  | 0x461bc0  |   3   | 136.06 |
+|  032  | 59      |   3  | 0x461bc0  |   3   | 284.03 |
+|  033  | 52      |   3  | 0x461bc0  |   3   | 120.60 |
+|  034  | 60      |   3  | 0x461bc0  |   3   | 246.63 |
+|  035  | 53      |   3  | 0x461bc0  |   3   | 126.93 |
+ =====================================================
+
+[35] ===================== NUMA Statistics =====================
+[35] Last Process: Rank 35
+[35] Process ID: 78557
+[35] Allocated Memory Size: 512 MB
+[35] Running numastat...
+[35] 
+[35] Per-node process memory usage (in MBs) for PID 78557 (numa_mem_bench)
+[35]                            Node 0          Node 1          Node 2          Node 3           Total
+[35]                   --------------- --------------- --------------- --------------- ---------------
+[35] Huge                         0.00            0.00            0.00            0.00            0.00
+[35] Heap                         0.00            0.00            0.00          514.35          514.35
+[35] Stack                        0.00            0.00            0.00            0.02            0.02
+[35] Private                      7.95            2.76            1.23            4.29           16.23
+[35] ----------------  --------------- --------------- --------------- --------------- ---------------
+[35] Total                        7.95            2.76            1.23          518.66          530.60
+[35]==========================================================
+
+[ 36 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 40 RANKS ] Benchmark Configuration
+[ 40 RANKS ] - Allocation Type  : interleaved
+[ 40 RANKS ] - Domains          : 0,1,2,3
+[ 40 RANKS ] - Ranks per Domain : 10
+[ 40 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 40 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 40 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 40 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 40 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 40 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 40 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 40 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 40 RANKS ] NUMA binding: 0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3
+[ 40 RANKS ] CPU binding : 1,9,2,10,3,11,4,12,5,13,17,25,18,26,19,27,20,28,21,29,33,41,34,42,35,43,36,44,37,45,49,57,50,58,51,59,52,60,53,61
+[ 40 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 40 --cpu-bind=map_cpu:1,9,2,10,3,11,4,12,5,13,17,25,18,26,19,27,20,28,21,29,33,41,34,42,35,43,36,44,37,45,49,57,50,58,51,59,52,60,53,61 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_40ranks_512MB.csv
+[Rank 35] Binding to NUMA domain 3
+[Rank 35] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 31] Binding to NUMA domain 3
+[Rank 31] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 39] Binding to NUMA domain 3
+[Rank 39] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 33] Binding to NUMA domain 3
+[Rank 33] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 0
+[Rank 9] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 32] Binding to NUMA domain 3
+[Rank 32] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 0
+[Rank 7] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 36] Binding to NUMA domain 3
+[Rank 36] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 38] Binding to NUMA domain 3
+[Rank 38] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 2
+[Rank 23] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 37] Binding to NUMA domain 3
+[Rank 37] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 29] Binding to NUMA domain 2
+[Rank 29] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 34] Binding to NUMA domain 3
+[Rank 34] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 2
+[Rank 21] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 30] Binding to NUMA domain 3
+[Rank 30] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 0
+[Rank 8] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 2
+[Rank 25] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 28] Binding to NUMA domain 2
+[Rank 28] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 27] Binding to NUMA domain 2
+[Rank 27] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 2
+[Rank 26] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 1
+[Rank 14] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 1
+[Rank 10] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 1
+[Rank 15] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 1
+[Rank 13] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 2
+[Rank 22] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 1
+[Rank 16] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 1
+[Rank 18] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 2
+[Rank 24] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 1
+[Rank 11] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 1
+[Rank 12] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 1
+[Rank 17] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 1
+[Rank 19] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 2
+[Rank 20] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_40ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 40
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_40ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x46a080  |   0   | 316.04 |
+|  001  | 9       |   0  | 0x4699e0  |   0   | 295.89 |
+|  002  | 2       |   0  | 0x4699e0  |   0   | 278.56 |
+|  003  | 10      |   0  | 0x4699e0  |   0   | 243.53 |
+|  004  | 3       |   0  | 0x4699e0  |   0   | 131.72 |
+|  005  | 11      |   0  | 0x4699e0  |   0   | 329.37 |
+|  006  | 4       |   0  | 0x4699e0  |   0   | 130.97 |
+|  007  | 12      |   0  | 0x4699e0  |   0   | 200.17 |
+|  008  | 5       |   0  | 0x4699e0  |   0   | 134.24 |
+|  009  | 13      |   0  | 0x4699e0  |   0   | 329.45 |
+|  010  | 17      |   1  | 0x469a20  |   1   | 296.15 |
+|  011  | 25      |   1  | 0x469a20  |   1   | 314.07 |
+|  012  | 18      |   1  | 0x469a20  |   1   | 265.22 |
+|  013  | 26      |   1  | 0x469a20  |   1   | 274.06 |
+|  014  | 19      |   1  | 0x469a20  |   1   | 201.96 |
+|  015  | 27      |   1  | 0x469a20  |   1   | 328.85 |
+|  016  | 20      |   1  | 0x469a20  |   1   | 269.16 |
+|  017  | 28      |   1  | 0x469a20  |   1   | 119.14 |
+|  018  | 21      |   1  | 0x469a20  |   1   | 153.65 |
+|  019  | 29      |   1  | 0x469a20  |   1   | 205.40 |
+|  020  | 33      |   2  | 0x469a60  |   2   | 213.89 |
+|  021  | 41      |   2  | 0x469a60  |   2   | 244.18 |
+|  022  | 34      |   2  | 0x469a60  |   2   | 297.60 |
+|  023  | 42      |   2  | 0x469a60  |   2   | 156.33 |
+|  024  | 35      |   2  | 0x469a60  |   2   | 301.63 |
+|  025  | 43      |   2  | 0x469a60  |   2   | 185.48 |
+|  026  | 36      |   2  | 0x469a60  |   2   | 275.39 |
+|  027  | 44      |   2  | 0x469a60  |   2   | 121.50 |
+|  028  | 37      |   2  | 0x469a60  |   2   | 223.45 |
+|  029  | 45      |   2  | 0x469a60  |   2   | 174.69 |
+|  030  | 49      |   3  | 0x469aa0  |   3   | 308.22 |
+|  031  | 57      |   3  | 0x469aa0  |   3   | 301.36 |
+|  032  | 50      |   3  | 0x469aa0  |   3   | 221.42 |
+|  033  | 58      |   3  | 0x469aa0  |   3   | 170.99 |
+|  034  | 51      |   3  | 0x469aa0  |   3   | 180.62 |
+|  035  | 59      |   3  | 0x469aa0  |   3   | 270.22 |
+|  036  | 52      |   3  | 0x469aa0  |   3   | 117.16 |
+|  037  | 60      |   3  | 0x469aa0  |   3   | 223.94 |
+|  038  | 53      |   3  | 0x469aa0  |   3   | 313.90 |
+|  039  | 61      |   3  | 0x469aa0  |   3   | 198.41 |
+ =====================================================
+
+[39] ===================== NUMA Statistics =====================
+[39] Last Process: Rank 39
+[39] Process ID: 79607
+[39] Allocated Memory Size: 512 MB
+[39] Running numastat...
+[39] 
+[39] Per-node process memory usage (in MBs) for PID 79607 (numa_mem_bench)
+[39]                            Node 0          Node 1          Node 2          Node 3           Total
+[39]                   --------------- --------------- --------------- --------------- ---------------
+[39] Huge                         0.00            0.00            0.00            0.00            0.00
+[39] Heap                         0.00            0.00            0.00          514.38          514.38
+[39] Stack                        0.00            0.00            0.00            0.02            0.02
+[39] Private                      7.84            2.96            1.13            4.15           16.09
+[39] ----------------  --------------- --------------- --------------- --------------- ---------------
+[39] Total                        7.84            2.96            1.13          518.55          530.49
+[39]==========================================================
+
+[ 40 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 44 RANKS ] Benchmark Configuration
+[ 44 RANKS ] - Allocation Type  : interleaved
+[ 44 RANKS ] - Domains          : 0,1,2,3
+[ 44 RANKS ] - Ranks per Domain : 11
+[ 44 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 44 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 44 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 44 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 44 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 44 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 44 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 44 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 44 RANKS ] NUMA binding: 0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3
+[ 44 RANKS ] CPU binding : 1,9,2,10,3,11,4,12,5,13,6,17,25,18,26,19,27,20,28,21,29,22,33,41,34,42,35,43,36,44,37,45,38,49,57,50,58,51,59,52,60,53,61,54
+[ 44 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 44 --cpu-bind=map_cpu:1,9,2,10,3,11,4,12,5,13,6,17,25,18,26,19,27,20,28,21,29,22,33,41,34,42,35,43,36,44,37,45,38,49,57,50,58,51,59,52,60,53,61,54 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_44ranks_512MB.csv
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 0
+[Rank 10] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 33] Binding to NUMA domain 3
+[Rank 33] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 37] Binding to NUMA domain 3
+[Rank 37] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 34] Binding to NUMA domain 3
+[Rank 34] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 0
+[Rank 7] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 35] Binding to NUMA domain 3
+[Rank 35] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 1
+[Rank 13] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 40] Binding to NUMA domain 3
+[Rank 40] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 43] Binding to NUMA domain 3
+[Rank 43] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 38] Binding to NUMA domain 3
+[Rank 38] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 36] Binding to NUMA domain 3
+[Rank 36] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 1
+[Rank 19] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 2
+[Rank 22] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 42] Binding to NUMA domain 3
+[Rank 42] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 39] Binding to NUMA domain 3
+[Rank 39] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 41] Binding to NUMA domain 3
+[Rank 41] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 1
+[Rank 15] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 0
+[Rank 8] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 1
+[Rank 14] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 27] Binding to NUMA domain 2
+[Rank 27] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 28] Binding to NUMA domain 2
+[Rank 28] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 2
+[Rank 23] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 30] Binding to NUMA domain 2
+[Rank 30] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 2
+[Rank 25] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 31] Binding to NUMA domain 2
+[Rank 31] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 1
+[Rank 17] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 1
+[Rank 21] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 1
+[Rank 11] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 1
+[Rank 20] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 2
+[Rank 24] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 0
+[Rank 9] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 2
+[Rank 26] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 32] Binding to NUMA domain 2
+[Rank 32] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 1
+[Rank 12] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 1
+[Rank 16] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 1
+[Rank 18] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+[Rank 29] Binding to NUMA domain 2
+[Rank 29] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_44ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 44
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_44ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x472000  |   0   | 232.77 |
+|  001  | 9       |   0  | 0x471960  |   0   | 305.73 |
+|  002  | 2       |   0  | 0x471960  |   0   | 182.26 |
+|  003  | 10      |   0  | 0x471960  |   0   | 337.09 |
+|  004  | 3       |   0  | 0x471960  |   0   | 276.06 |
+|  005  | 11      |   0  | 0x471960  |   0   | 316.65 |
+|  006  | 4       |   0  | 0x471960  |   0   | 246.52 |
+|  007  | 12      |   0  | 0x471960  |   0   | 282.77 |
+|  008  | 5       |   0  | 0x471960  |   0   | 123.92 |
+|  009  | 13      |   0  | 0x471960  |   0   | 341.51 |
+|  010  | 6       |   0  | 0x471960  |   0   | 133.19 |
+|  011  | 17      |   1  | 0x4719a0  |   1   | 330.47 |
+|  012  | 25      |   1  | 0x4719a0  |   1   | 300.21 |
+|  013  | 18      |   1  | 0x4719a0  |   1   | 237.10 |
+|  014  | 26      |   1  | 0x4719a0  |   1   | 321.99 |
+|  015  | 19      |   1  | 0x4719a0  |   1   | 178.86 |
+|  016  | 27      |   1  | 0x4719a0  |   1   | 285.36 |
+|  017  | 20      |   1  | 0x4719a0  |   1   | 204.82 |
+|  018  | 28      |   1  | 0x4719a0  |   1   | 324.47 |
+|  019  | 21      |   1  | 0x4719a0  |   1   | 128.06 |
+|  020  | 29      |   1  | 0x4719a0  |   1   | 305.97 |
+|  021  | 22      |   1  | 0x4719a0  |   1   | 121.53 |
+|  022  | 33      |   2  | 0x4719e0  |   2   | 301.73 |
+|  023  | 41      |   2  | 0x4719e0  |   2   | 297.56 |
+|  024  | 34      |   2  | 0x4719e0  |   2   | 286.38 |
+|  025  | 42      |   2  | 0x4719e0  |   2   | 305.57 |
+|  026  | 35      |   2  | 0x4719e0  |   2   | 230.41 |
+|  027  | 43      |   2  | 0x4719e0  |   2   | 310.35 |
+|  028  | 36      |   2  | 0x4719e0  |   2   | 138.88 |
+|  029  | 44      |   2  | 0x4719e0  |   2   | 279.91 |
+|  030  | 37      |   2  | 0x4719e0  |   2   | 143.05 |
+|  031  | 45      |   2  | 0x4719e0  |   2   | 257.88 |
+|  032  | 38      |   2  | 0x4719e0  |   2   | 121.81 |
+|  033  | 49      |   3  | 0x471a20  |   3   | 239.18 |
+|  034  | 57      |   3  | 0x471a20  |   3   | 298.64 |
+|  035  | 50      |   3  | 0x471a20  |   3   | 265.45 |
+|  036  | 58      |   3  | 0x471a20  |   3   | 345.46 |
+|  037  | 51      |   3  | 0x471a20  |   3   | 268.05 |
+|  038  | 59      |   3  | 0x471a20  |   3   | 318.99 |
+|  039  | 52      |   3  | 0x471a20  |   3   | 162.53 |
+|  040  | 60      |   3  | 0x471a20  |   3   | 349.00 |
+|  041  | 53      |   3  | 0x471a20  |   3   | 168.25 |
+|  042  | 61      |   3  | 0x471a20  |   3   | 279.41 |
+|  043  | 54      |   3  | 0x471a20  |   3   | 121.56 |
+ =====================================================
+
+[43] ===================== NUMA Statistics =====================
+[43] Last Process: Rank 43
+[43] Process ID: 80741
+[43] Allocated Memory Size: 512 MB
+[43] Running numastat...
+[43] 
+[43] Per-node process memory usage (in MBs) for PID 80741 (numa_mem_bench)
+[43]                            Node 0          Node 1          Node 2          Node 3           Total
+[43]                   --------------- --------------- --------------- --------------- ---------------
+[43] Huge                         0.00            0.00            0.00            0.00            0.00
+[43] Heap                         0.00            0.00            0.00          514.41          514.41
+[43] Stack                        0.00            0.00            0.00            0.02            0.02
+[43] Private                      7.95            2.97            1.14            4.36           16.41
+[43] ----------------  --------------- --------------- --------------- --------------- ---------------
+[43] Total                        7.95            2.97            1.14          518.79          530.84
+[43]==========================================================
+
+[ 44 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 48 RANKS ] Benchmark Configuration
+[ 48 RANKS ] - Allocation Type  : interleaved
+[ 48 RANKS ] - Domains          : 0,1,2,3
+[ 48 RANKS ] - Ranks per Domain : 12
+[ 48 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 48 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 48 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 48 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 48 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 48 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 48 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 48 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 48 RANKS ] NUMA binding: 0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3
+[ 48 RANKS ] CPU binding : 1,9,2,10,3,11,4,12,5,13,6,14,17,25,18,26,19,27,20,28,21,29,22,30,33,41,34,42,35,43,36,44,37,45,38,46,49,57,50,58,51,59,52,60,53,61,54,62
+[ 48 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 48 --cpu-bind=map_cpu:1,9,2,10,3,11,4,12,5,13,6,14,17,25,18,26,19,27,20,28,21,29,22,30,33,41,34,42,35,43,36,44,37,45,38,46,49,57,50,58,51,59,52,60,53,61,54,62 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_48ranks_512MB.csv
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 0
+[Rank 9] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 38] Binding to NUMA domain 3
+[Rank 38] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 41] Binding to NUMA domain 3
+[Rank 41] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 47] Binding to NUMA domain 3
+[Rank 47] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 0
+[Rank 11] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 44] Binding to NUMA domain 3
+[Rank 44] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 40] Binding to NUMA domain 3
+[Rank 40] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 42] Binding to NUMA domain 3
+[Rank 42] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 36] Binding to NUMA domain 3
+[Rank 36] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 46] Binding to NUMA domain 3
+[Rank 46] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 37] Binding to NUMA domain 3
+[Rank 37] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 0
+[Rank 7] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 45] Binding to NUMA domain 3
+[Rank 45] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 43] Binding to NUMA domain 3
+[Rank 43] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 39] Binding to NUMA domain 3
+[Rank 39] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 0
+[Rank 10] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 2
+[Rank 25] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 0
+[Rank 8] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 33] Binding to NUMA domain 2
+[Rank 33] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 1
+[Rank 16] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 31] Binding to NUMA domain 2
+[Rank 31] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 1
+[Rank 12] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 35] Binding to NUMA domain 2
+[Rank 35] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 1
+[Rank 14] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 1
+[Rank 20] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 2
+[Rank 24] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 1
+[Rank 18] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 27] Binding to NUMA domain 2
+[Rank 27] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 32] Binding to NUMA domain 2
+[Rank 32] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 28] Binding to NUMA domain 2
+[Rank 28] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 1
+[Rank 13] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 29] Binding to NUMA domain 2
+[Rank 29] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 1
+[Rank 15] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 1
+[Rank 21] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 1
+[Rank 23] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 34] Binding to NUMA domain 2
+[Rank 34] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 1
+[Rank 17] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 1
+[Rank 22] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 2
+[Rank 26] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 30] Binding to NUMA domain 2
+[Rank 30] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 1
+[Rank 19] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_48ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 48
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_48ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x479c90  |   0   | 236.85 |
+|  001  | 9       |   0  | 0x4795f0  |   0   | 294.64 |
+|  002  | 2       |   0  | 0x4795f0  |   0   | 242.00 |
+|  003  | 10      |   0  | 0x4795f0  |   0   | 332.67 |
+|  004  | 3       |   0  | 0x4795f0  |   0   | 355.51 |
+|  005  | 11      |   0  | 0x4795f0  |   0   | 341.85 |
+|  006  | 4       |   0  | 0x4795f0  |   0   | 238.37 |
+|  007  | 12      |   0  | 0x4795f0  |   0   | 350.92 |
+|  008  | 5       |   0  | 0x4795f0  |   0   | 143.41 |
+|  009  | 13      |   0  | 0x4795f0  |   0   | 357.75 |
+|  010  | 6       |   0  | 0x4795f0  |   0   | 134.81 |
+|  011  | 14      |   0  | 0x4795f0  |   0   | 148.90 |
+|  012  | 17      |   1  | 0x479630  |   1   | 299.01 |
+|  013  | 25      |   1  | 0x479630  |   1   | 337.32 |
+|  014  | 18      |   1  | 0x479630  |   1   | 293.72 |
+|  015  | 26      |   1  | 0x479630  |   1   | 341.30 |
+|  016  | 19      |   1  | 0x479630  |   1   | 201.09 |
+|  017  | 27      |   1  | 0x479630  |   1   | 290.84 |
+|  018  | 20      |   1  | 0x479630  |   1   | 196.91 |
+|  019  | 28      |   1  | 0x479630  |   1   | 318.05 |
+|  020  | 21      |   1  | 0x479630  |   1   | 122.97 |
+|  021  | 29      |   1  | 0x479630  |   1   | 293.60 |
+|  022  | 22      |   1  | 0x479630  |   1   | 159.17 |
+|  023  | 30      |   1  | 0x479630  |   1   | 164.21 |
+|  024  | 33      |   2  | 0x479670  |   2   | 322.01 |
+|  025  | 41      |   2  | 0x479670  |   2   | 287.78 |
+|  026  | 34      |   2  | 0x479670  |   2   | 330.29 |
+|  027  | 42      |   2  | 0x479670  |   2   | 310.31 |
+|  028  | 35      |   2  | 0x479670  |   2   | 336.50 |
+|  029  | 43      |   2  | 0x479670  |   2   | 297.73 |
+|  030  | 36      |   2  | 0x479670  |   2   | 158.77 |
+|  031  | 44      |   2  | 0x479670  |   2   | 238.14 |
+|  032  | 37      |   2  | 0x479670  |   2   | 337.50 |
+|  033  | 45      |   2  | 0x479670  |   2   | 153.48 |
+|  034  | 38      |   2  | 0x479670  |   2   | 215.22 |
+|  035  | 46      |   2  | 0x479670  |   2   | 121.34 |
+|  036  | 49      |   3  | 0x4796b0  |   3   | 360.70 |
+|  037  | 57      |   3  | 0x4796b0  |   3   | 217.36 |
+|  038  | 50      |   3  | 0x4796b0  |   3   | 296.79 |
+|  039  | 58      |   3  | 0x4796b0  |   3   | 350.63 |
+|  040  | 51      |   3  | 0x4796b0  |   3   | 144.87 |
+|  041  | 59      |   3  | 0x4796b0  |   3   | 325.53 |
+|  042  | 52      |   3  | 0x4796b0  |   3   | 137.72 |
+|  043  | 60      |   3  | 0x4796b0  |   3   | 143.20 |
+|  044  | 53      |   3  | 0x4796b0  |   3   | 363.62 |
+|  045  | 61      |   3  | 0x4796b0  |   3   | 168.73 |
+|  046  | 54      |   3  | 0x4796b0  |   3   | 140.41 |
+|  047  | 62      |   3  | 0x4796b0  |   3   | 274.13 |
+ =====================================================
+
+[47] ===================== NUMA Statistics =====================
+[47] Last Process: Rank 47
+[47] Process ID: 82032
+[47] Allocated Memory Size: 512 MB
+[47] Running numastat...
+[47] 
+[47] Per-node process memory usage (in MBs) for PID 82032 (numa_mem_bench)
+[47]                            Node 0          Node 1          Node 2          Node 3           Total
+[47]                   --------------- --------------- --------------- --------------- ---------------
+[47] Huge                         0.00            0.00            0.00            0.00            0.00
+[47] Heap                         0.00            0.00            0.00          514.44          514.44
+[47] Stack                        0.00            0.00            0.00            0.02            0.02
+[47] Private                      7.86            3.04            1.11            4.21           16.22
+[47] ----------------  --------------- --------------- --------------- --------------- ---------------
+[47] Total                        7.86            3.04            1.11          518.68          530.68
+[47]==========================================================
+
+[ 48 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 52 RANKS ] Benchmark Configuration
+[ 52 RANKS ] - Allocation Type  : interleaved
+[ 52 RANKS ] - Domains          : 0,1,2,3
+[ 52 RANKS ] - Ranks per Domain : 13
+[ 52 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 52 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 52 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 52 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 52 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 52 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 52 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 52 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 52 RANKS ] NUMA binding: 0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3
+[ 52 RANKS ] CPU binding : 1,9,2,10,3,11,4,12,5,13,6,14,7,17,25,18,26,19,27,20,28,21,29,22,30,23,33,41,34,42,35,43,36,44,37,45,38,46,39,49,57,50,58,51,59,52,60,53,61,54,62,55
+[ 52 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 52 --cpu-bind=map_cpu:1,9,2,10,3,11,4,12,5,13,6,14,7,17,25,18,26,19,27,20,28,21,29,22,30,23,33,41,34,42,35,43,36,44,37,45,38,46,39,49,57,50,58,51,59,52,60,53,61,54,62,55 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_52ranks_512MB.csv
+[Rank 39] Binding to NUMA domain 3
+[Rank 39] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 0
+[Rank 9] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 47] Binding to NUMA domain 3
+[Rank 47] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 49] Binding to NUMA domain 3
+[Rank 49] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 41] Binding to NUMA domain 3
+[Rank 41] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 44] Binding to NUMA domain 3
+[Rank 44] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 43] Binding to NUMA domain 3
+[Rank 43] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 40] Binding to NUMA domain 3
+[Rank 40] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 42] Binding to NUMA domain 3
+[Rank 42] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 45] Binding to NUMA domain 3
+[Rank 45] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 46] Binding to NUMA domain 3
+[Rank 46] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 50] Binding to NUMA domain 3
+[Rank 50] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 48] Binding to NUMA domain 3
+[Rank 48] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 51] Binding to NUMA domain 3
+[Rank 51] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 1
+[Rank 15] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 1
+[Rank 17] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 1
+[Rank 21] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 1
+[Rank 25] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 1
+[Rank 19] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 0
+[Rank 11] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 0
+[Rank 7] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 1
+[Rank 13] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 1
+[Rank 18] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 0
+[Rank 10] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 1
+[Rank 14] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 1
+[Rank 24] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 38] Binding to NUMA domain 2
+[Rank 38] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 30] Binding to NUMA domain 2
+[Rank 30] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 34] Binding to NUMA domain 2
+[Rank 34] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 2
+[Rank 26] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 27] Binding to NUMA domain 2
+[Rank 27] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 33] Binding to NUMA domain 2
+[Rank 33] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 28] Binding to NUMA domain 2
+[Rank 28] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 31] Binding to NUMA domain 2
+[Rank 31] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 35] Binding to NUMA domain 2
+[Rank 35] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 1
+[Rank 22] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 0
+[Rank 12] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 1
+[Rank 20] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 1
+[Rank 23] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 0
+[Rank 8] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 1
+[Rank 16] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 29] Binding to NUMA domain 2
+[Rank 29] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 36] Binding to NUMA domain 2
+[Rank 36] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 37] Binding to NUMA domain 2
+[Rank 37] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+[Rank 32] Binding to NUMA domain 2
+[Rank 32] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_52ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 52
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_52ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x481df0  |   0   | 364.36 |
+|  001  | 9       |   0  | 0x481750  |   0   | 374.74 |
+|  002  | 2       |   0  | 0x481750  |   0   | 362.45 |
+|  003  | 10      |   0  | 0x481750  |   0   | 376.45 |
+|  004  | 3       |   0  | 0x481750  |   0   | 181.12 |
+|  005  | 11      |   0  | 0x481750  |   0   | 294.36 |
+|  006  | 4       |   0  | 0x481750  |   0   | 143.99 |
+|  007  | 12      |   0  | 0x481750  |   0   | 345.72 |
+|  008  | 5       |   0  | 0x481750  |   0   | 170.66 |
+|  009  | 13      |   0  | 0x481750  |   0   | 381.42 |
+|  010  | 6       |   0  | 0x481750  |   0   | 126.93 |
+|  011  | 14      |   0  | 0x481750  |   0   | 253.72 |
+|  012  | 7       |   0  | 0x481750  |   0   | 135.50 |
+|  013  | 17      |   1  | 0x481790  |   1   | 402.93 |
+|  014  | 25      |   1  | 0x481790  |   1   | 294.75 |
+|  015  | 18      |   1  | 0x481790  |   1   | 300.91 |
+|  016  | 26      |   1  | 0x481790  |   1   | 296.70 |
+|  017  | 19      |   1  | 0x481790  |   1   | 233.29 |
+|  018  | 27      |   1  | 0x481790  |   1   | 297.59 |
+|  019  | 20      |   1  | 0x481790  |   1   | 127.39 |
+|  020  | 28      |   1  | 0x481790  |   1   | 275.60 |
+|  021  | 21      |   1  | 0x481790  |   1   | 123.02 |
+|  022  | 29      |   1  | 0x481790  |   1   | 298.58 |
+|  023  | 22      |   1  | 0x481790  |   1   | 251.81 |
+|  024  | 30      |   1  | 0x481790  |   1   | 242.04 |
+|  025  | 23      |   1  | 0x481790  |   1   | 246.43 |
+|  026  | 33      |   2  | 0x4817d0  |   2   | 374.02 |
+|  027  | 41      |   2  | 0x4817d0  |   2   | 378.56 |
+|  028  | 34      |   2  | 0x4817d0  |   2   | 307.27 |
+|  029  | 42      |   2  | 0x4817d0  |   2   | 380.32 |
+|  030  | 35      |   2  | 0x4817d0  |   2   | 384.71 |
+|  031  | 43      |   2  | 0x4817d0  |   2   | 363.19 |
+|  032  | 36      |   2  | 0x4817d0  |   2   | 153.72 |
+|  033  | 44      |   2  | 0x4817d0  |   2   | 363.09 |
+|  034  | 37      |   2  | 0x4817d0  |   2   | 214.33 |
+|  035  | 45      |   2  | 0x4817d0  |   2   | 318.98 |
+|  036  | 38      |   2  | 0x4817d0  |   2   | 196.78 |
+|  037  | 46      |   2  | 0x4817d0  |   2   | 260.28 |
+|  038  | 39      |   2  | 0x4817d0  |   2   | 120.48 |
+|  039  | 49      |   3  | 0x481810  |   3   | 405.15 |
+|  040  | 57      |   3  | 0x481810  |   3   | 348.68 |
+|  041  | 50      |   3  | 0x481810  |   3   | 317.39 |
+|  042  | 58      |   3  | 0x481810  |   3   | 347.06 |
+|  043  | 51      |   3  | 0x481810  |   3   | 220.68 |
+|  044  | 59      |   3  | 0x481810  |   3   | 364.22 |
+|  045  | 52      |   3  | 0x481810  |   3   | 225.00 |
+|  046  | 60      |   3  | 0x481810  |   3   | 366.09 |
+|  047  | 53      |   3  | 0x481810  |   3   | 255.44 |
+|  048  | 61      |   3  | 0x481810  |   3   | 356.53 |
+|  049  | 54      |   3  | 0x481810  |   3   | 126.61 |
+|  050  | 62      |   3  | 0x481810  |   3   | 266.08 |
+|  051  | 55      |   3  | 0x481810  |   3   | 136.05 |
+ =====================================================
+
+[51] ===================== NUMA Statistics =====================
+[51] Last Process: Rank 51
+[51] Process ID: 83409
+[51] Allocated Memory Size: 512 MB
+[51] Running numastat...
+[51] 
+[51] Per-node process memory usage (in MBs) for PID 83409 (numa_mem_bench)
+[51]                            Node 0          Node 1          Node 2          Node 3           Total
+[51]                   --------------- --------------- --------------- --------------- ---------------
+[51] Huge                         0.00            0.00            0.00            0.00            0.00
+[51] Heap                         0.00            0.00            0.00          514.48          514.48
+[51] Stack                        0.00            0.00            0.00            0.02            0.02
+[51] Private                      8.07            2.89            1.26            4.29           16.52
+[51] ----------------  --------------- --------------- --------------- --------------- ---------------
+[51] Total                        8.07            2.89            1.26          518.79          531.02
+[51]==========================================================
+
+[ 52 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 56 RANKS ] Benchmark Configuration
+[ 56 RANKS ] - Allocation Type  : interleaved
+[ 56 RANKS ] - Domains          : 0,1,2,3
+[ 56 RANKS ] - Ranks per Domain : 14
+[ 56 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 56 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 56 RANKS ] - Skipping CPU 16 in domain 1 as specified in SKIP_CORES
+[ 56 RANKS ] - Skipping CPU 24 in domain 1 as specified in SKIP_CORES
+[ 56 RANKS ] - Skipping CPU 32 in domain 2 as specified in SKIP_CORES
+[ 56 RANKS ] - Skipping CPU 40 in domain 2 as specified in SKIP_CORES
+[ 56 RANKS ] - Skipping CPU 48 in domain 3 as specified in SKIP_CORES
+[ 56 RANKS ] - Skipping CPU 56 in domain 3 as specified in SKIP_CORES
+[ 56 RANKS ] NUMA binding: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+[ 56 RANKS ] CPU binding : 1,9,2,10,3,11,4,12,5,13,6,14,7,15,17,25,18,26,19,27,20,28,21,29,22,30,23,31,33,41,34,42,35,43,36,44,37,45,38,46,39,47,49,57,50,58,51,59,52,60,53,61,54,62,55,63
+[ 56 RANKS ] Executing : srun --unbuffered --nodes 1 --ntasks 56 --cpu-bind=map_cpu:1,9,2,10,3,11,4,12,5,13,6,14,7,15,17,25,18,26,19,27,20,28,21,29,22,30,23,31,33,41,34,42,35,43,36,44,37,45,38,46,39,47,49,57,50,58,51,59,52,60,53,61,54,62,55,63 --hint=nomultithread wrapper_numa.sh --numa=0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3 --executable ./numa_mem_bench -- --size=512 --csv=interleaved_domains0,1,2,3_56ranks_512MB.csv
+[Rank 55] Binding to NUMA domain 3
+[Rank 55] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 54] Binding to NUMA domain 3
+[Rank 54] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 6] Binding to NUMA domain 0
+[Rank 6] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 44] Binding to NUMA domain 3
+[Rank 44] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 46] Binding to NUMA domain 3
+[Rank 46] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 52] Binding to NUMA domain 3
+[Rank 52] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 0] Binding to NUMA domain 0
+[Rank 0] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 42] Binding to NUMA domain 3
+[Rank 42] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 48] Binding to NUMA domain 3
+[Rank 48] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 1] Binding to NUMA domain 0
+[Rank 1] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 53] Binding to NUMA domain 3
+[Rank 53] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 4] Binding to NUMA domain 0
+[Rank 4] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 3] Binding to NUMA domain 0
+[Rank 3] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 29] Binding to NUMA domain 2
+[Rank 29] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 2] Binding to NUMA domain 0
+[Rank 2] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 5] Binding to NUMA domain 0
+[Rank 5] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 43] Binding to NUMA domain 3
+[Rank 43] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 8] Binding to NUMA domain 0
+[Rank 8] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 51] Binding to NUMA domain 3
+[Rank 51] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 11] Binding to NUMA domain 0
+[Rank 11] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 13] Binding to NUMA domain 0
+[Rank 13] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 49] Binding to NUMA domain 3
+[Rank 49] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 47] Binding to NUMA domain 3
+[Rank 47] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 10] Binding to NUMA domain 0
+[Rank 10] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 12] Binding to NUMA domain 0
+[Rank 12] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 16] Binding to NUMA domain 1
+[Rank 16] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 18] Binding to NUMA domain 1
+[Rank 18] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 9] Binding to NUMA domain 0
+[Rank 9] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 7] Binding to NUMA domain 0
+[Rank 7] Executing: numactl --membind=0 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 20] Binding to NUMA domain 1
+[Rank 20] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 22] Binding to NUMA domain 1
+[Rank 22] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 30] Binding to NUMA domain 2
+[Rank 30] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 34] Binding to NUMA domain 2
+[Rank 34] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 33] Binding to NUMA domain 2
+[Rank 33] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 24] Binding to NUMA domain 1
+[Rank 24] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 40] Binding to NUMA domain 2
+[Rank 40] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 28] Binding to NUMA domain 2
+[Rank 28] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 37] Binding to NUMA domain 2
+[Rank 37] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 50] Binding to NUMA domain 3
+[Rank 50] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 14] Binding to NUMA domain 1
+[Rank 14] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 35] Binding to NUMA domain 2
+[Rank 35] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 45] Binding to NUMA domain 3
+[Rank 45] Executing: numactl --membind=3 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 31] Binding to NUMA domain 2
+[Rank 31] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 39] Binding to NUMA domain 2
+[Rank 39] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 15] Binding to NUMA domain 1
+[Rank 15] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 25] Binding to NUMA domain 1
+[Rank 25] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 26] Binding to NUMA domain 1
+[Rank 26] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 36] Binding to NUMA domain 2
+[Rank 36] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 19] Binding to NUMA domain 1
+[Rank 19] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 21] Binding to NUMA domain 1
+[Rank 21] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 38] Binding to NUMA domain 2
+[Rank 38] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 32] Binding to NUMA domain 2
+[Rank 32] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 41] Binding to NUMA domain 2
+[Rank 41] Executing: numactl --membind=2 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 27] Binding to NUMA domain 1
+[Rank 27] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 23] Binding to NUMA domain 1
+[Rank 23] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+[Rank 17] Binding to NUMA domain 1
+[Rank 17] Executing: numactl --membind=1 ./numa_mem_bench '--size=512' '--csv=interleaved_domains0,1,2,3_56ranks_512MB.csv' 
+
+===================== Benchmark Information =====================
+MPI Configuration:
+  Number of ranks: 56
+  Command line arguments:
+    argv[0] = ./numa_mem_bench
+    argv[1] = --size=512
+    argv[2] = --csv=interleaved_domains0,1,2,3_56ranks_512MB.csv
+
+System Information:
+  Page size: 4096 bytes
+  Number of NUMA nodes: 4
+  NUMA available: Yes
+  Number of CPUs: 128
+  Current CPU: 1
+  Current NUMA node: 0
+
+Note: NUMA memory binding should be controlled externally using numactl --membind=<node>
+Mapping information written to mapping_check.log
+=================================================================
+
+
+ =====================================================
+|  MPI  |        CPU     |         MEMORY    |LATENCY (ns)|
+|-------|---------|------|-----------|-------|--------|
+| Ranks | Cores   | NUMA |  Address  | NUMA  | 512MB  |
+|-------|---------|------|-----------|-------|--------|
+|  000  | 1       |   0  | 0x489c10  |   0   | 298.20 |
+|  001  | 9       |   0  | 0x489570  |   0   | 366.33 |
+|  002  | 2       |   0  | 0x489570  |   0   | 374.42 |
+|  003  | 10      |   0  | 0x489570  |   0   | 369.23 |
+|  004  | 3       |   0  | 0x489570  |   0   | 347.49 |
+|  005  | 11      |   0  | 0x489570  |   0   | 287.00 |
+|  006  | 4       |   0  | 0x489570  |   0   | 284.67 |
+|  007  | 12      |   0  | 0x489570  |   0   | 173.35 |
+|  008  | 5       |   0  | 0x489570  |   0   | 385.35 |
+|  009  | 13      |   0  | 0x489570  |   0   | 153.52 |
+|  010  | 6       |   0  | 0x489570  |   0   | 395.47 |
+|  011  | 14      |   0  | 0x489570  |   0   | 133.90 |
+|  012  | 7       |   0  | 0x489570  |   0   | 357.99 |
+|  013  | 15      |   0  | 0x489570  |   0   | 129.90 |
+|  014  | 17      |   1  | 0x4895b0  |   1   | 296.15 |
+|  015  | 25      |   1  | 0x4895b0  |   1   | 329.90 |
+|  016  | 18      |   1  | 0x4895b0  |   1   | 407.12 |
+|  017  | 26      |   1  | 0x4895b0  |   1   | 293.17 |
+|  018  | 19      |   1  | 0x4895b0  |   1   | 381.87 |
+|  019  | 27      |   1  | 0x4895b0  |   1   | 372.57 |
+|  020  | 20      |   1  | 0x4895b0  |   1   | 408.25 |
+|  021  | 28      |   1  | 0x4895b0  |   1   | 138.50 |
+|  022  | 21      |   1  | 0x4895b0  |   1   | 346.43 |
+|  023  | 29      |   1  | 0x4895b0  |   1   | 277.89 |
+|  024  | 22      |   1  | 0x4895b0  |   1   | 226.75 |
+|  025  | 30      |   1  | 0x4895b0  |   1   | 125.31 |
+|  026  | 23      |   1  | 0x4895b0  |   1   | 236.52 |
+|  027  | 31      |   1  | 0x4895b0  |   1   | 237.17 |
+|  028  | 33      |   2  | 0x4895f0  |   2   | 295.95 |
+|  029  | 41      |   2  | 0x4895f0  |   2   | 197.53 |
+|  030  | 34      |   2  | 0x4895f0  |   2   | 391.00 |
+|  031  | 42      |   2  | 0x4895f0  |   2   | 291.37 |
+|  032  | 35      |   2  | 0x4895f0  |   2   | 168.50 |
+|  033  | 43      |   2  | 0x4895f0  |   2   | 230.93 |
+|  034  | 36      |   2  | 0x4895f0  |   2   | 229.14 |
+|  035  | 44      |   2  | 0x4895f0  |   2   | 178.57 |
+|  036  | 37      |   2  | 0x4895f0  |   2   | 271.41 |
+|  037  | 45      |   2  | 0x4895f0  |   2   | 196.59 |
+|  038  | 38      |   2  | 0x4895f0  |   2   | 395.78 |
+|  039  | 46      |   2  | 0x4895f0  |   2   | 178.78 |
+|  040  | 39      |   2  | 0x4895f0  |   2   | 359.65 |
+|  041  | 47      |   2  | 0x4895f0  |   2   | 129.89 |
+|  042  | 49      |   3  | 0x489630  |   3   | 301.70 |
+|  043  | 57      |   3  | 0x489630  |   3   | 348.39 |
+|  044  | 50      |   3  | 0x489630  |   3   | 376.88 |
+|  045  | 58      |   3  | 0x489630  |   3   | 300.03 |
+|  046  | 51      |   3  | 0x489630  |   3   | 319.00 |
+|  047  | 59      |   3  | 0x489630  |   3   | 341.96 |
+|  048  | 52      |   3  | 0x489630  |   3   | 359.09 |
+|  049  | 60      |   3  | 0x489630  |   3   | 291.20 |
+|  050  | 53      |   3  | 0x489630  |   3   | 152.61 |
+|  051  | 61      |   3  | 0x489630  |   3   | 148.75 |
+|  052  | 54      |   3  | 0x489630  |   3   | 137.53 |
+|  053  | 62      |   3  | 0x489630  |   3   | 190.46 |
+|  054  | 55      |   3  | 0x489630  |   3   | 298.02 |
+|  055  | 63      |   3  | 0x489630  |   3   | 300.69 |
+ =====================================================
+
+[55] ===================== NUMA Statistics =====================
+[55] Last Process: Rank 55
+[55] Process ID: 84884
+[55] Allocated Memory Size: 512 MB
+[55] Running numastat...
+[55] 
+[55] Per-node process memory usage (in MBs) for PID 84884 (numa_mem_bench)
+[55]                            Node 0          Node 1          Node 2          Node 3           Total
+[55]                   --------------- --------------- --------------- --------------- ---------------
+[55] Huge                         0.00            0.00            0.00            0.00            0.00
+[55] Heap                         0.00            0.00            0.00          514.51          514.51
+[55] Stack                        0.00            0.00            0.00            0.02            0.02
+[55] Private                      7.90            3.01            1.32            4.36           16.59
+[55] ----------------  --------------- --------------- --------------- --------------- ---------------
+[55] Total                        7.90            3.01            1.32          518.89          531.11
+[55]==========================================================
+
+[ 56 RANKS ] Benchmark completed successfully
+================================================================================
+
+================================================================================
+[ 60 RANKS ] Benchmark Configuration
+[ 60 RANKS ] - Allocation Type  : interleaved
+[ 60 RANKS ] - Domains          : 0,1,2,3
+[ 60 RANKS ] - Ranks per Domain : 15
+[ 60 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 60 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 60 RANKS ] Notice: Can only use 14 cores on domain 0 (requested 15)
+[ 60 RANKS ] Domain 0 has 16 total cores but 2 were excluded by SKIP_CORES
+[ 60 RANKS ] Limiting to the maximum available cores (14)
+[ 60 RANKS ] Skipping configuration with 15 ranks on domain 0.
+[ 60 RANKS ] Insufficient usable cores for this configuration. Skipping benchmark.
+================================================================================
+
+================================================================================
+[ 64 RANKS ] Benchmark Configuration
+[ 64 RANKS ] - Allocation Type  : interleaved
+[ 64 RANKS ] - Domains          : 0,1,2,3
+[ 64 RANKS ] - Ranks per Domain : 16
+[ 64 RANKS ] - Skipping CPU 0 in domain 0 as specified in SKIP_CORES
+[ 64 RANKS ] - Skipping CPU 8 in domain 0 as specified in SKIP_CORES
+[ 64 RANKS ] Notice: Can only use 14 cores on domain 0 (requested 16)
+[ 64 RANKS ] Domain 0 has 16 total cores but 2 were excluded by SKIP_CORES
+[ 64 RANKS ] Limiting to the maximum available cores (14)
+[ 64 RANKS ] Skipping configuration with 16 ranks on domain 0.
+[ 64 RANKS ] Insufficient usable cores for this configuration. Skipping benchmark.
+================================================================================
+
+================================================================================
+                     Benchmark Run Summary                       
+================================================================================
+Date: Fri 18 Apr 2025 01:25:43 PM EEST
+Job Directory: /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/examples/FINAL/example3_all_cores_512MB/results_scaling/job_10417454_lumig_all_cores_interleaved
+
+Configuration:
+--------------------------------------------------------------------------------
+  System: LUMI
+  Partition: PART-G
+  NUMA Nodes: 4
+  CCDs per NUMA domain: 2
+  Cores per CCD: 8 (calculated)
+  Skipped Cores: 24 16 0 8 56 48 40 32
+
+  CPU ranges:
+    Domain 0: 0-15,64-79
+    Domain 1: 16-31,80-95
+    Domain 2: 32-47,96-111
+    Domain 3: 48-63,112-127
+
+  Mode: interleaved
+  Domains: 0,1,2,3
+  Memory Sizes: 512
+  Dry Run: false
+Benchmarks completed successfully
+All results will be saved under: /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/examples/FINAL/example3_all_cores_512MB/results_scaling/job_10417454_lumig_all_cores_interleaved
+Successfully cleaned up symbolic links [total removed: 2]
+Benchmark run completed at Fri 18 Apr 2025 01:25:44 PM EEST
+================================================================================

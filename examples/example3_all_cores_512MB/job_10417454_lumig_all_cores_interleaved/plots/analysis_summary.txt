@@ -1,0 +1,92 @@
+NUMA Benchmark Analysis Summary
+=============================
+
+Analysis Mode: single
+Source Directory: /pfs/lustrep4/users/pourroy/CODE/Numa-Mem-Bench/examples/example3_all_cores_512MB/job_10417454_lumig_all_cores_interleaved
+
+Statistical Analysis per Rank Count (Single Size):
+-----------------------------------------------
+
+4 ranks (interleaved_domains0,1,2,3_4ranks_512MB.csv):  Mean latency: 100.35 ns
+  Std dev:      0.81 ns
+  Min latency:  98.99 ns
+  Max latency:  101.12 ns
+  CoV:          0.81%
+
+8 ranks (interleaved_domains0,1,2,3_8ranks_512MB.csv):  Mean latency: 113.09 ns
+  Std dev:      13.22 ns
+  Min latency:  101.22 ns
+  Max latency:  134.07 ns
+  CoV:          11.69%
+
+12 ranks (interleaved_domains0,1,2,3_12ranks_512MB.csv):  Mean latency: 142.45 ns
+  Std dev:      31.64 ns
+  Min latency:  105.47 ns
+  Max latency:  183.96 ns
+  CoV:          22.21%
+
+16 ranks (interleaved_domains0,1,2,3_16ranks_512MB.csv):  Mean latency: 153.64 ns
+  Std dev:      38.78 ns
+  Min latency:  111.78 ns
+  Max latency:  222.11 ns
+  CoV:          25.24%
+
+20 ranks (interleaved_domains0,1,2,3_20ranks_512MB.csv):  Mean latency: 177.30 ns
+  Std dev:      48.48 ns
+  Min latency:  111.62 ns
+  Max latency:  241.38 ns
+  CoV:          27.35%
+
+24 ranks (interleaved_domains0,1,2,3_24ranks_512MB.csv):  Mean latency: 172.47 ns
+  Std dev:      51.37 ns
+  Min latency:  115.26 ns
+  Max latency:  270.79 ns
+  CoV:          29.79%
+
+28 ranks (interleaved_domains0,1,2,3_28ranks_512MB.csv):  Mean latency: 197.23 ns
+  Std dev:      64.25 ns
+  Min latency:  115.68 ns
+  Max latency:  285.95 ns
+  CoV:          32.58%
+
+32 ranks (interleaved_domains0,1,2,3_32ranks_512MB.csv):  Mean latency: 203.53 ns
+  Std dev:      61.46 ns
+  Min latency:  119.00 ns
+  Max latency:  295.17 ns
+  CoV:          30.20%
+
+36 ranks (interleaved_domains0,1,2,3_36ranks_512MB.csv):  Mean latency: 232.27 ns
+  Std dev:      73.25 ns
+  Min latency:  116.63 ns
+  Max latency:  340.29 ns
+  CoV:          31.54%
+
+40 ranks (interleaved_domains0,1,2,3_40ranks_512MB.csv):  Mean latency: 232.95 ns
+  Std dev:      67.60 ns
+  Min latency:  117.16 ns
+  Max latency:  329.45 ns
+  CoV:          29.02%
+
+44 ranks (interleaved_domains0,1,2,3_44ranks_512MB.csv):  Mean latency: 250.17 ns
+  Std dev:      73.15 ns
+  Min latency:  121.53 ns
+  Max latency:  349.00 ns
+  CoV:          29.24%
+
+48 ranks (interleaved_domains0,1,2,3_48ranks_512MB.csv):  Mean latency: 254.76 ns
+  Std dev:      81.38 ns
+  Min latency:  121.34 ns
+  Max latency:  363.62 ns
+  CoV:          31.95%
+
+52 ranks (interleaved_domains0,1,2,3_52ranks_512MB.csv):  Mean latency: 277.95 ns
+  Std dev:      88.70 ns
+  Min latency:  120.48 ns
+  Max latency:  405.15 ns
+  CoV:          31.91%
+
+56 ranks (interleaved_domains0,1,2,3_56ranks_512MB.csv):  Mean latency: 277.07 ns
+  Std dev:      88.23 ns
+  Min latency:  125.31 ns
+  Max latency:  408.25 ns
+  CoV:          31.84%
