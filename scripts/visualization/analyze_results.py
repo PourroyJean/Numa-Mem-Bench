@@ -1,4 +1,41 @@
 #!/usr/bin/env python3
+# =============================================================================
+# Script: analyze_results.py
+# Author: Jean Pourroy
+# Organization: HPE
+# License: MIT (See LICENSE file for details)
+# Version: 1.0
+# =============================================================================
+# This script analyzes and visualizes NUMA benchmark results from CSV files.
+# It supports both single-size and multiple-size analysis modes, generating
+# various plots to help understand memory latency patterns across different
+# NUMA configurations.
+#
+# Features:
+# - Single-size analysis with Min/Mean/P90/Max visualization
+# - Multiple-size analysis with 2D and 3D plots
+# - Box plots for latency distribution
+# - Heatmaps for per-rank latency patterns
+# - Support for NUMA mapping visualization
+# - Detailed statistical summaries
+#
+# Usage:
+#   python3 analyze_results.py <directory_or_file> [options]
+#
+# Required:
+#   <directory_or_file>    Path to directory containing CSV files or single CSV file
+#
+# Options:
+#   --mode <mode>          Analysis mode: 'single' or 'multiple' (default: auto-detect)
+#   --no-3d                Skip 3D visualizations in multiple size mode
+#   --verbose              Enable verbose (DEBUG) logging
+#   --mapping <file>       Path to NUMA mapping file for detailed analysis
+#   --help                 Display help message
+#
+# Example:
+#   python3 analyze_results.py results/job_123456 --mode multiple --verbose
+# =============================================================================
+
 import sys
 import os
 import pandas as pd
