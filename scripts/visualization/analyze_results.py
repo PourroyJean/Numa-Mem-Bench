@@ -89,13 +89,6 @@ def detect_data_mode(csv_files, verbose=False):
 def parse_csv_files(job_dir, mode=None, verbose=False):
     """Parses all relevant CSV files in the job directory.
 
-    Identifies benchmark result CSV files,
-    extracts the number of ranks from the filename, and parses latency data
-    based on the specified or auto-detected analysis mode ('single' or 'multiple').
-
-    Calculates basic statistics (mean, std, min, max) for each run (single mode)
-    or for each memory size within each run (multiple mode).
-
     Args:
         job_dir (Path): The path to the directory containing the CSV result files.
         mode (str | None, optional): The analysis mode ('single' or 'multiple').
@@ -118,10 +111,14 @@ def parse_csv_files(job_dir, mode=None, verbose=False):
     log.info(f"Starting to parse CSV files in {job_dir}")
     data = []
     
-    if not job_dir.exists() or not job_dir.is_dir():
-        raise DataParsingError(f"Error: Directory {job_dir} does not exist or is not a directory")
+    # Handle single CSV file case
+    if job_dir.is_file() and job_dir.suffix == '.csv':
+        csv_files = [job_dir]
+    else:
+        if not job_dir.exists() or not job_dir.is_dir():
+            raise DataParsingError(f"Error: Directory {job_dir} does not exist or is not a directory")
+        csv_files = sorted([f for f in job_dir.glob("*.csv")])
     
-    csv_files = sorted([f for f in job_dir.glob("*.csv")])
     log.info(f"Found {len(csv_files)} CSV files: {[f.name for f in csv_files]}")
     
     if not csv_files:
@@ -145,13 +142,14 @@ def parse_csv_files(job_dir, mode=None, verbose=False):
                 # Raise specific error
                 raise DataParsingError(f"Invalid CSV format in {csv_file.name}: expected >= 2 cols, found {len(df.columns)}")
 
-            # Extract number of ranks from filename
+            # Extract number of ranks from filename or use column count
             match = re.search(r'(\d+)ranks', csv_file.stem)
-            if not match:
-                # Raise specific error
-                raise DataParsingError(f"Could not find number of ranks (e.g., '16ranks') in filename {csv_file.name}")
-            ranks = int(match.group(1)) # Assume int conversion is safe after regex match
-            log.debug(f"Found {ranks} ranks in filename")
+            if match:
+                ranks = int(match.group(1))
+            else:
+                # If no rank count in filename, use number of columns minus size column
+                ranks = len(df.columns) - 1 if 'size (MB)' in df.columns else len(df.columns)
+            log.debug(f"Found {ranks} ranks in filename or data")
 
             file_data = {'ranks': ranks, 'source_file': csv_file.name}
 
@@ -662,13 +660,25 @@ def create_summary(data, job_dir, mode='single'):
 
     Args:
         data (list[dict]): The parsed benchmark data.
-        job_dir (Path): The path to the main job directory.
+        job_dir (Path): The path to the main job directory or CSV file.
         mode (str): The analysis mode ('single' or 'multiple') used.
     """
     log.info("Creating analysis summary file...")
-    summary_file = job_dir / 'plots' / 'analysis_summary.txt'
-    plots_dir = job_dir / 'plots' # Ensure plots_dir exists
-    plots_dir.mkdir(exist_ok=True)
+    
+    # Handle case where job_dir is a CSV file
+    if job_dir.is_file() and job_dir.suffix == '.csv':
+        plots_dir = job_dir.parent / 'plots'
+    else:
+        plots_dir = job_dir / 'plots'
+    
+    # Ensure plots_dir exists
+    try:
+        plots_dir.mkdir(exist_ok=True)
+    except OSError as e:
+        log.error(f"Could not create plots directory {plots_dir}: {e}")
+        return
+
+    summary_file = plots_dir / 'analysis_summary.txt'
     try:
         with open(summary_file, 'w') as f:
             f.write("NUMA Benchmark Analysis Summary\n")
@@ -739,15 +749,26 @@ def main():
     if args.verbose: log.setLevel(logging.DEBUG); log.info("Verbose logging enabled.")
     else: log.setLevel(logging.INFO)
 
-    # Process each directory
+    # Process each directory or file
     for job_dir in args.job_dirs:
-        abs_job_dir = job_dir.resolve()
-        log.info ("============================================================================================================")
-        log.info(f"         -> Processing directory: {abs_job_dir}")
-        log.info ("============================================================================================================")
-        
-        # Define plots_dir early and ensure it exists
-        plots_dir = job_dir / 'plots'
+        # Handle case where job_dir is a CSV file
+        if job_dir.is_file() and job_dir.suffix == '.csv':
+            abs_job_dir = job_dir.parent.resolve()
+            log.info ("============================================================================================================")
+            log.info(f"         -> Processing CSV file: {job_dir.name}")
+            log.info ("============================================================================================================")
+            
+            # Create plots directory in the same location as the CSV file
+            plots_dir = job_dir.parent / 'plots'
+        else:
+            abs_job_dir = job_dir.resolve()
+            log.info ("============================================================================================================")
+            log.info(f"         -> Processing directory: {abs_job_dir}")
+            log.info ("============================================================================================================")
+            
+            # Define plots_dir early and ensure it exists
+            plots_dir = job_dir / 'plots'
+
         try:
             plots_dir.mkdir(exist_ok=True)
             log.debug(f"Ensured plots directory exists: {plots_dir}")
