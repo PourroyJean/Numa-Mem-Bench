@@ -225,20 +225,160 @@ size (MB),0,1,2,3,4,5,6
 4,14.91,15.23,23.30,30.35,19.52,23.85,17.06
 ...
 ```
-### Graphical visualization
 
 
-**Visualization:**
 
-The [plot_scaling.py](./scripts/visualization/plot_scaling.py) script can be used to generate a plot from the resulting CSV and mapping files.
-The full results and mapping files for this run can be found in the `examples/01_LUMIG_1_domain_7_ranks/` directory.
+
+
+## [run_numa_benchmarks.sh](scripts/orchestrator/run_numa_benchmarks.sh) usage
+
+The `run_numa_benchmarks.sh` script (v1.1) provides a sophisticated orchestration layer for running NUMA-aware benchmarks with different memory allocation strategies and core binding configurations. It automatically handles the complexity of mapping MPI ranks to specific cores based on the system's NUMA topology.
+
+### Features
+
+- **Sequential and Interleaved Allocation**: Supports both sequential and interleaved memory allocation across specified NUMA domains
+- **Automatic Core Binding**: Intelligently maps MPI ranks to CPU cores based on system topology
+- **Memory Size Scaling**: Run tests with various memory sizes (single, range, or list)
+- **Architecture-Aware**: Uses architecture configuration files to adapt to different systems
+- **Dry-Run Mode**: Preview commands without execution for verification
+- **Custom Labeling**: Add labels to job directories for easier identification
+
+### Required Parameters
+
+- `--arch <config>`: Path to architecture configuration file that defines system topology
+- `--wrapper <path>`: Path to wrapper_numa.sh script
+- `--benchmark <path>`: Path to numa_mem_bench executable
+
+### Optional Parameters
+
+- `--sequential <domains>`: Run with sequential CPU allocation on specified domains (comma-separated list)
+- `--interleaved <domains>`: Run with interleaved CCDs on specified domains (comma-separated list)
+- `--memory-sizes <sizes>`: Memory size(s) to test (single, range, or list)
+- `--dry-run`: Show commands without executing them
+- `--label <string>`: Add a label to the job directory name
+
+### Architecture Configuration Files
+
+The script uses architecture configuration files to understand the system's NUMA topology. These files should contain:
+
+- `SYSTEM_NAME`: Name of the system (e.g., "LUMI-G")
+- `PARTITION`: Partition name (e.g., "standard")
+- `CCDS_PER_NUMA`: Number of CCDs per NUMA domain
+- `NUMA node(s):`: Number of NUMA nodes in the system
+- `NUMA node0 CPU(s):`: CPU ranges for each NUMA domain
+
+Example configuration files can be found in the `architectures/` directory.
+
+
+
+### Usage Examples
+
 ```bash
-python3 plot_scaling.py lumig_domain0_7ranks.csv --mapping mapping_check.log --output lumig_domain0_7ranks.png
+# Realistic example: Interleaved allocation on all NUMA domains (0-7) with SLURM account and partition
+sbatch --account=project_XXXXXX --partition standard \
+  ./scripts/orchestrator/run_numa_benchmarks.sh \
+  --arch ./architectures/lumi_partc \
+  --wrapper ./scripts/orchestrator/wrapper_numa.sh \
+  --benchmark ./numa_mem_bench \
+  --interleaved 0,1,2,3,4,5,6,7 \
+  --label lumic_all_cores_interleaved
 ```
 
-![Lumi G Domain 0 Scaling Plot](examples/01_LUMIG_1_domain_7_ranks/lumig_domain0_7ranks.png)
+### Workflow
 
-*This plot shows the memory latency (ns) versus memory size (MB, log scale) for each of the 7 ranks running within NUMA domain 0. The bottom subplot shows the average latency and standard deviation for this NUMA node.*
+When executed, the script:
+
+1. Parses the architecture configuration file to understand system topology
+2. Validates and processes command-line arguments
+3. Sets up a job directory for output files
+4. For each rank count from 1 to the maximum available cores:
+   - Creates NUMA and CPU binding strings
+   - Launches the benchmark with appropriate binding
+5. Creates a summary of the run
+6. Cleans up temporary files
+
+### Results Organization
+
+Results are saved in the `results_scaling/job_<JOB_ID>_<LABEL>/` directory, with each benchmark run producing a CSV file following this naming convention:
+
+```
+<allocation_type>_domains<list>_<total_ranks>ranks_<size>MB.csv
+```
+
+For example: `sequential_domain0_7ranks_8MB.csv`
+
+## Graphical visualization
+
+The benchmark suite includes advanced visualization tools to analyze the results of NUMA benchmark runs.
+
+### Using analyze_results.py
+
+The [analyze_results.py](./scripts/visualization/analyze_results.py) script provides comprehensive analysis and visualization of benchmark results. This tool replaces the previous plotting script with enhanced capabilities for both single-size and multiple-size analysis modes.
+
+#### Features
+
+- Automatic detection of single or multiple memory size datasets
+- Statistical analysis of latency measurements (mean, min, max, standard deviation)
+- Generation of multiple plot types:
+  - 2D plots showing latency vs. ranks
+  - 2D plots showing latency vs. memory size
+  - 3D surface plots visualizing latency vs. ranks and memory size
+  - Heatmaps of latency distribution
+  - Box plots for statistical distribution
+  - Detailed NUMA-aware analyses when mapping information is provided
+- Comprehensive text summaries of statistical data
+- Support for multiple input directories with a single command
+
+#### Usage
+
+```bash
+# Basic usage
+python3 ./scripts/visualization/analyze_results.py <job_directory>
+
+# Multiple directories analysis
+python3 ./scripts/visualization/analyze_results.py dir1 dir2 dir3
+
+# With NUMA mapping information
+python3 ./scripts/visualization/analyze_results.py <job_directory> --mapping ./mapping_check.log
+
+# Control visualization options
+python3 ./scripts/visualization/analyze_results.py <job_directory> --mode multiple --no-3d
+```
+
+#### Parameters
+
+- `job_dirs`: One or more directories containing benchmark results (supports glob patterns)
+- `--mode`: Analysis mode ('single' or 'multiple' memory sizes, default: auto-detect)
+- `--no-3d`: Skip 3D visualizations in multiple size mode
+- `--verbose`: Enable verbose logging
+- `--mapping`: Path to NUMA mapping file for detailed node-specific analysis
+
+#### Output Examples
+
+The script generates various plots depending on the input data:
+
+1. **Single Size Analysis**: Creates a 2×2 grid showing:
+   - Min/Max/Average/p90 latency vs. rank count
+   - Box plot of latency distribution
+   - Sum of latencies & relative efficiency
+   - Heatmap of latency per rank ID
+
+   ![Single Size Analysis](examples/example3_all_cores_512MB/job_10417451_lumic_all_cores_sequential/plots/single_size_analysis.png)
+
+2. **Multiple Size Analysis**: Generates several plots including:
+   - Statistical plots (median, sum, P99, standard deviation)
+   - 3D surface plots showing latency vs. ranks and memory size
+   - Detailed per-rank latency vs size plots
+   
+   ![Detailed Latency vs Size](examples/example4_all_cores_1_to_512MB/job_10417456_lumig_all_cores_interleaved_multiple_sizes/plots/3d_median_latency.png)
+   ![Detailed Latency vs Size](examples/example4_all_cores_1_to_512MB/job_10417456_lumig_all_cores_interleaved_multiple_sizes/plots/multi_size_stats.pn)
+
+3. **With NUMA Mapping**: When a mapping file is provided, additional NUMA-specific visualizations are generated:
+   - Average latency by NUMA node with standard deviation
+   - Per-rank latency with NUMA node identification
+
+All plots are saved in a `plots` subdirectory within each job directory, along with a comprehensive statistical summary in `analysis_summary.txt`.
+
 
 
 ## Example 2: Scaling on Lumi G (Multiple Domains with Wrapper)
@@ -261,13 +401,13 @@ The full results and mapping files for this run can be found in the `examples/02
 
 **Visualization:**
 
-The [plot_scaling.py](./scripts/visualization/plot_scaling.py) script processes the CSV and mapping file to visualize the results for both NUMA domains.
+The [analyze_results.py](./scripts/visualization/analyze_results.py) script processes the CSV and mapping file to visualize the results for both NUMA domains.
 
 ```bash
-python plot_scaling.py lumig_domain0_and_1_14_ranks.csv --mapping mapping_check.log --output lumig_domain0_and_1_14_ranks.png
+python3 ./scripts/visualization/analyze_results.py lumig_domain0_and_1_14_ranks.csv --mapping mapping_check.log
 ```
 
-![Lumi G 2 Domains Scaling Plot](examples/02_LUMIG_2_domains_14_ranks/lumig_domain0_and_1_14_ranks.png)
+![Lumi G 2 Domains Scaling Plot](examples/example2_lumig_14ranks_2_domains/plots/detailed_latency_vs_size.png)
 
 *This plot shows the memory latency for ranks grouped by their NUMA node (Node 0 and Node 1). The top subplot displays individual rank performance, while the bottom subplot shows the average latency and standard deviation for each NUMA node*
 
@@ -287,3 +427,80 @@ The codebase is modular and designed for extension. New benchmarks can be added 
 1. Creating new benchmark modules
 2. Adding them to the Makefile
 3. Integrating them with the main program
+
+## Environment Setup
+
+Before running the benchmarks or visualization tools, you need to set up your environment. Numa-Mem-Bench provides an `env.sh` script that sets up all necessary paths and environment variables.
+
+### Using env.sh
+
+The environment setup script should be sourced before running any commands:
+
+```bash
+# Source the environment setup script
+source ./env.sh
+```
+
+This script:
+- Detects the installation directory automatically
+- Sets up paths to all required executables and scripts
+- Configures SLURM parameters (which you can customize)
+- Activates the Python virtual environment if available
+- Verifies that required files exist
+
+### Customizing the Environment
+
+You may need to customize the environment for your specific system. Edit the `env.sh` file to:
+
+1. Set your SLURM account information
+   ```bash
+   export SLURM_ACCOUNT=your_project_account
+   ```
+
+2. Configure your system's partition names
+   ```bash
+   CPU_PARTITION=your_cpu_partition
+   GPU_PARTITION=your_gpu_partition
+   ```
+
+3. Adjust paths if you have a non-standard installation structure
+
+### Python Environment
+
+The visualization tools require Python with several packages. You have two options for setting up the Python environment:
+
+#### Option 1: Using a Virtual Environment (Recommended)
+
+This creates an isolated environment specific to this project:
+
+```bash
+# Create a virtual environment
+python3 -m venv scripts/python_venv
+
+# Activate the virtual environment
+source scripts/python_venv/bin/activate
+
+# Install required packages
+pip install -r scripts/visualization/requirements.txt
+```
+
+The `env.sh` script will automatically activate this environment if it exists.
+
+#### Option 2: Installing Packages Directly
+
+If you prefer not to use a virtual environment, you can install the required packages directly:
+
+```bash
+# Install the minimum required packages
+pip install pandas numpy matplotlib seaborn
+```
+
+#### Required Python Packages
+
+The visualization tools require the following Python packages:
+- pandas: For data handling and manipulation
+- numpy: For numerical operations
+- matplotlib: For creating plots and visualizations
+- seaborn: For enhanced statistical visualizations
+
+The full list of requirements is available in `scripts/visualization/requirements.txt`.
